@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-ws-off-white: #F6F3EE;
+  --color-ws-dark: #1a1a1a;
+  --color-ws-yellow: #fdeca6;
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+}
+
+@layer base {
+  body {
+    @apply bg-ws-off-white text-ws-dark font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-[1440px] mx-auto px-6;
+  }
+  
+  .btn-primary {
+    @apply bg-ws-dark text-white px-6 py-3 rounded-full font-medium hover:bg-black transition-colors duration-200 inline-block text-center;
+  }
+  
+  .btn-secondary {
+    @apply bg-white border border-neutral-300 text-ws-dark px-6 py-3 rounded-full font-medium hover:bg-neutral-50 transition-colors duration-200 inline-block text-center;
+  }
+}
