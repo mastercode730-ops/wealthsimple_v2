@@ -10,9 +10,6 @@ const HeroSection = () => {
     if (videoRef.current) {
       videoRef.current.defaultMuted = true;
       videoRef.current.muted = true;
-      videoRef.current.play().catch(error => {
-        console.error("Video autoplay failed:", error);
-      });
     }
   }, []);
 
@@ -32,13 +29,12 @@ const HeroSection = () => {
       {/* Background Video */}
       <video 
         ref={videoRef}
-        autoPlay={true}
-        loop={true}
-        muted={true}
-        playsInline={true}
+        autoPlay
+        loop
+        muted
+        playsInline
         poster={heroPoster}
         className="absolute inset-0 w-full h-full object-cover"
-        onCanPlay={(e) => e.target.play()}
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
