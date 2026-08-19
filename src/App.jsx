@@ -7,20 +7,20 @@ import GlobalFloatingButtons from './components/GlobalFloatingButtons';
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
-  if (currentPage === 'login') {
-    return <Login onBack={() => setCurrentPage('home')} onSignupClick={() => setCurrentPage('signup')} />;
-  }
-
-  if (currentPage === 'signup') {
-    return <Signup onBack={() => setCurrentPage('home')} onLoginClick={() => setCurrentPage('login')} />;
-  }
-
   return (
     <div className="relative">
-      <Home 
-        onLoginClick={() => setCurrentPage('login')} 
-        onSignupClick={() => setCurrentPage('signup')} 
-      />
+      {currentPage === 'login' && (
+        <Login onBack={() => setCurrentPage('home')} onSignupClick={() => setCurrentPage('signup')} />
+      )}
+      {currentPage === 'signup' && (
+        <Signup onBack={() => setCurrentPage('home')} onLoginClick={() => setCurrentPage('login')} />
+      )}
+      {currentPage === 'home' && (
+        <Home 
+          onLoginClick={() => setCurrentPage('login')} 
+          onSignupClick={() => setCurrentPage('signup')} 
+        />
+      )}
       <GlobalFloatingButtons />
     </div>
   );

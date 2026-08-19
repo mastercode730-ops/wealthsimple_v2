@@ -1,5 +1,6 @@
 import React from 'react';
 import wordmark from '../assets/ws-wordmark-refresh.48a6eb42.svg';
+import { openSupportChat } from '../utils/supportChat';
 
 const Footer = () => {
   const columns = [
@@ -86,13 +87,29 @@ const Footer = () => {
                   const isObject = typeof link === 'object';
                   const name = isObject ? link.name : link;
                   const icon = isObject ? link.icon : null;
+                  const isChatLink = typeof name === 'string' && (
+                    name.toLowerCase() === 'help centre' ||
+                    name.toLowerCase() === 'help center' ||
+                    name.toLowerCase() === 'contact us'
+                  );
                   
                   return (
                     <li key={linkIdx}>
-                      <a href="#" className="text-[15px] hover:underline flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
-                        {icon && <span className="opacity-70">{icon}</span>}
-                        {name}
-                      </a>
+                      {isChatLink ? (
+                        <button
+                          type="button"
+                          onClick={openSupportChat}
+                          className="text-[15px] hover:underline flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity bg-transparent border-0 p-0 text-[#2d2a26] cursor-pointer text-left font-sans"
+                        >
+                          {icon && <span className="opacity-70">{icon}</span>}
+                          {name}
+                        </button>
+                      ) : (
+                        <a href="#" className="text-[15px] hover:underline flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
+                          {icon && <span className="opacity-70">{icon}</span>}
+                          {name}
+                        </a>
+                      )}
                     </li>
                   );
                 })}

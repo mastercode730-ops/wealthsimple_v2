@@ -25,6 +25,16 @@ const GlobalFloatingButtons = () => {
     }
   }, [messages, isOpen, isTyping]);
 
+  useEffect(() => {
+    const handleOpenChat = () => {
+      setIsOpen(true);
+    };
+    window.addEventListener('open-support-chat', handleOpenChat);
+    return () => {
+      window.removeEventListener('open-support-chat', handleOpenChat);
+    };
+  }, []);
+
   const quickQuestions = [
     "What are your fees?",
     "How do I open an account?",
