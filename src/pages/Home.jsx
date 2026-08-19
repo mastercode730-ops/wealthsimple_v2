@@ -14,42 +14,24 @@ import TldrSection from '../components/TldrSection';
 import StatsSection from '../components/StatsSection';
 import ComparisonTable from '../components/ComparisonTable';
 import Footer from '../components/Footer';
-import { showcaseItems } from '../data/content';
 
-const Home = ({ onLoginClick }) => {
+const Home = ({ onLoginClick, onSignupClick }) => {
   return (
     <div className="min-h-screen bg-ws-off-white font-sans text-ws-dark">
-      <Navbar onLoginClick={onLoginClick} />
+      <Navbar onLoginClick={onLoginClick} onSignupClick={onSignupClick} />
       <main>
-        <HeroSection />
+        <HeroSection onSignupClick={onSignupClick} />
         <FeatureLinks />
         <ChequingShowcase />
         <CreditCardShowcase />
-       
-        
-        {/* <section className="py-20">
-          {showcaseItems.slice(1).map((item, index) => (
-            <ShowcaseCard 
-              key={index}
-              title={item.title}
-              description={item.description}
-              image={item.image}
-              reverse={item.reverse}
-              badge={item.badge}
-            />
-          ))}
-        </section> */}
-        
         <WelcomeSection />
         <TradingShowcase />
         <PortfolioShowcase />
         <ClassicPortfolioShowcase />
-        {/* <FeatureCards /> */}
         <TldrSection />
-        <StatsSection />
-        {/* <ComparisonTable /> */}
+        <StatsSection onSignupClick={onSignupClick} />
       </main>
-      <Footer />
+      <Footer onSignupClick={onSignupClick} />
     </div>
   );
 };

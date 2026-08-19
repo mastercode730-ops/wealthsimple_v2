@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/ws-wordmark-refresh.48a6eb42.svg";
 
-const Navbar = ({ onLoginClick }) => {
+const Navbar = ({ onLoginClick, onSignupClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -38,14 +38,17 @@ const Navbar = ({ onLoginClick }) => {
           </button>
 
           {/* Get started */}
-          <button className="hidden md:block bg-[#2d2a26] text-white px-5 py-3.5 rounded-full font-medium hover:bg-black transition-colors">
+          <button 
+            onClick={onSignupClick}
+            className="hidden md:block bg-[#2d2a26] text-white px-5 py-3.5 rounded-full font-medium hover:bg-black transition-colors cursor-pointer"
+          >
             Get started
           </button>
 
           {/* Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-black flex items-center justify-center hover:bg-neutral-100 transition-colors"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-black flex items-center justify-center hover:bg-neutral-100 transition-colors cursor-pointer"
           >
             <svg
               width="18"
@@ -76,7 +79,13 @@ const Navbar = ({ onLoginClick }) => {
           >
             Log in
           </button>
-          <button className="w-full bg-[#2d2a26] text-white px-5 py-3 rounded-full font-medium hover:bg-black transition-colors">
+          <button 
+            onClick={() => {
+              setIsMenuOpen(false);
+              onSignupClick();
+            }}
+            className="w-full bg-[#2d2a26] text-white px-5 py-3 rounded-full font-medium hover:bg-black transition-colors cursor-pointer"
+          >
             Get started
           </button>
         </div>

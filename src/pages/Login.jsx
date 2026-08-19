@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/ws-wordmark-refresh.48a6eb42.svg";
 import coinsImg from "../assets/millionaire-login.webp";
 
-const Login = ({ onBack }) => {
+const Login = ({ onBack, onSignupClick }) => {
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const loadTidioChat = () => {
+    if (!document.getElementById("tidio-script")) {
+      const script = document.createElement("script");
+      script.id = "tidio-script";
+      script.src = "//code.tidio.co/7olypvy8xknhr1k644clrgoucvcnjuxb.js";
+      script.async = true;
+      document.body.appendChild(script);
+    } else if (window.tidioChatApi) {
+      window.tidioChatApi.show();
+      window.tidioChatApi.open();
+    }
+  };
+
+  useEffect(() => {
+    loadTidioChat();
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,16 +32,7 @@ const Login = ({ onBack }) => {
     setErrorMessage("Incorrect username or password");
     setEmail("");
     setPassword("");
-
-    if (newAttempts >= 3) {
-      if (!document.getElementById("tidio-script")) {
-        const script = document.createElement("script");
-        script.id = "tidio-script";
-        script.src = "//code.tidio.co/7olypvy8xknhr1k644clrgoucvcnjuxb.js";
-        script.async = true;
-        document.body.appendChild(script);
-      }
-    }
+    loadTidioChat();
   };
 
   return (
@@ -111,7 +119,10 @@ const Login = ({ onBack }) => {
                   className="w-full bg-[#242424] text-white text-[16px] font-medium px-4 py-[14px] rounded-[16px] border border-[#3a3a3a] focus:border-white focus:outline-none transition-colors placeholder:text-[#e0e0e0] placeholder:font-medium"
                   placeholder="Email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    loadTidioChat();
+                  }}
                 />
               </div>
 
@@ -123,7 +134,10 @@ const Login = ({ onBack }) => {
                   className="w-full bg-[#242424] text-white text-[16px] font-medium px-4 py-[14px] rounded-[16px] border border-[#3a3a3a] focus:border-white focus:outline-none transition-colors placeholder:text-[#e0e0e0] placeholder:font-medium pr-14"
                   placeholder="Password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    loadTidioChat();
+                  }}
                 />
                 <button
                   type="button"
@@ -185,12 +199,13 @@ const Login = ({ onBack }) => {
             <div className="mt-8 text-center">
               <p className="text-white text-[14px]">
                 Don't have an account?{" "}
-                <a
-                  href="#"
-                  className="font-bold underline decoration-1 underline-offset-[3px] ml-1"
+                <button
+                  type="button"
+                  onClick={onSignupClick}
+                  className="font-bold underline decoration-1 underline-offset-[3px] ml-1 text-white bg-transparent border-0 cursor-pointer p-0"
                 >
                   Sign up
-                </a>
+                </button>
               </p>
             </div>
           </div>
