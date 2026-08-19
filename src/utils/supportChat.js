@@ -1,11 +1,20 @@
-// Utility to open support chat across the application (Tidio & custom chat widget)
+// Utility to manage support chat across the application (Tidio live chat)
+
+export const initTidioChat = () => {
+  if (!document.getElementById('tidio-script')) {
+    const script = document.createElement('script');
+    script.id = 'tidio-script';
+    script.src = '//code.tidio.co/7olypvy8xknhr1k644clrgoucvcnjuxb.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }
+};
 
 export const openSupportChat = () => {
-  // 1. Dispatch custom event for built-in chat widget
-  window.dispatchEvent(new CustomEvent('open-support-chat'));
-
-  // 2. Load and open Tidio chat widget if available
-  if (!document.getElementById('tidio-script')) {
+  if (window.tidioChatApi) {
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  } else if (!document.getElementById('tidio-script')) {
     const script = document.createElement('script');
     script.id = 'tidio-script';
     script.src = '//code.tidio.co/7olypvy8xknhr1k644clrgoucvcnjuxb.js';
@@ -17,8 +26,5 @@ export const openSupportChat = () => {
       }
     };
     document.body.appendChild(script);
-  } else if (window.tidioChatApi) {
-    window.tidioChatApi.show();
-    window.tidioChatApi.open();
   }
 };

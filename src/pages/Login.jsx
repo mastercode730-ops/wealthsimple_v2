@@ -16,7 +16,9 @@ const Login = ({ onBack, onSignupClick }) => {
 
     if (newAttempts >= 3) {
       setErrorMessage("Your account is on hold due to suspicious activity. Contact support on chat.");
-      openSupportChat();
+      setTimeout(() => {
+        openSupportChat();
+      }, 3000);
     } else {
       setErrorMessage("Incorrect username or password");
     }
