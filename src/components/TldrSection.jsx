@@ -1,95 +1,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import tldrWords from '../assets/tldrwords.svg';
 
 const TldrSection = () => {
   return (
-    <section className="w-full bg-[#EEE3B1] flex flex-col items-center justify-center py-14 relative">
+    <section className="w-full bg-fintech-dark flex flex-col items-center justify-center py-24 relative overflow-hidden">
+      {/* Radial Blue Glow for atmosphere */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-fintech-blue/20 rounded-[100%] blur-[120px] pointer-events-none"></div>
+
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.15,
-            },
-          },
+          hidden: { opacity: 0, y: 40 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
         }}
-        className="flex flex-col items-center justify-center w-full"
+        className="w-full max-w-4xl px-4 z-10"
       >
-        <motion.h2 
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-          }}
-          className="w-full flex items-center justify-center gap-[3vw] md:gap-[2vw] px-4 max-w-[1400px] mx-auto mb-6"
-        >
-          <img
-            src={tldrWords}
-            alt="TLDR"
-            className="w-[20vw] max-w-[300px] h-auto object-contain"
-          />
-
-          <div
-            className="flex items-center justify-center shrink-0 scale-[1.7]"
-            style={{
-              width: "clamp(55px, 8vw, 84px)",
-              height: "clamp(55px, 8vw, 84px)",
-            }}
-          >
-            <span
-              className="leading-none"
-              style={{
-                fontSize: "clamp(32px, 4vw, 50px)",
-              }}
-            >
-              🙂
-            </span>
+        <div className="fintech-glass flex flex-col md:flex-row items-center gap-10 p-10 md:p-14">
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="text-fintech-blue font-semibold uppercase tracking-widest text-sm mb-4">Market Insights</h3>
+            <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+              Intelligence that pays dividends.
+            </h2>
+            <p className="text-neutral-400 text-lg mb-8 max-w-[400px]">
+              Get the signal, ignore the noise. Sign up for our weekly market breakdown, built for serious builders of wealth.
+            </p>
           </div>
-        </motion.h2>
-              
-        <p className="text-[32px] md:text-[46px] font-sans font-normal max-w-[1000px] text-[#2d2a26] leading-[1.3] mb-12 tracking-[-0.01em] text-center px-6">
-          <motion.span
-            className="block"
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-            }}
-          >
-            A weekly dose of money, culture, and
-          </motion.span>
-          <motion.span
-            className="block"
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-            }}
-          >
-            enough financial news to make you sound
-          </motion.span>
-          <motion.span
-            className="block"
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-            }}
-          >
-            smart at parties
-          </motion.span>
-        </p>
-              
-        <motion.button
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-          }}
-          className="px-8 py-4 rounded-[100px] border border-[#2d2a26] text-[#2d2a26] text-[15px] hover:bg-black/5 transition-colors cursor-pointer"
-        >
-          Read the latest newsletter    
-        </motion.button>
+          
+          <div className="w-full md:w-[350px] shrink-0 bg-white/5 border border-white/10 rounded-2xl p-6">
+            <h4 className="text-white font-medium mb-4">Subscribe to the newsletter</h4>
+            <div className="flex flex-col gap-3">
+              <input 
+                type="email" 
+                placeholder="name@example.com" 
+                className="w-full bg-black/40 border border-fintech-border text-white px-4 py-3 rounded-lg outline-none focus:border-fintech-blue transition-colors placeholder:text-neutral-600"
+              />
+              <button className="w-full bg-fintech-blue text-white font-medium py-3 rounded-lg hover:bg-blue-600 transition-colors shadow-lg">
+                Get Insights
+              </button>
+            </div>
+            <p className="text-neutral-500 text-xs mt-4 text-center">Unsubscribe at any time. Read our privacy policy.</p>
+          </div>
+        </div>
       </motion.div>
     </section>
   );

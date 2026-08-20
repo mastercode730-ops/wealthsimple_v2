@@ -4,126 +4,121 @@ import videoSrc from '../assets/trade___active_trading_background___video___en-C
 
 const TradingShowcase = () => {
   const videoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
+  
   return (
-    <section className="relative w-full h-screen flex items-center overflow-hidden">
-      {/* Background Video */}
+    <section className="relative w-full h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden bg-fintech-dark border-t border-fintech-border/50">
+      {/* Background Video Layer */}
       <video 
         ref={videoRef}
         src={videoSrc}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen"
         autoPlay 
         loop 
         muted 
         playsInline
       />
+      
+      {/* Gradient Overlay for Readability */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-fintech-dark via-fintech-dark/80 to-transparent"></div>
 
-      {/* Gradient Overlay */}
-      <div 
-        className="absolute inset-0 z-10" 
-        style={{
-          background: 'linear-gradient(0.25turn, rgba(0,0,0,0.35), transparent 60%)'
-        }}
-      ></div>
-
-      {/* Content Area */}
-      <div className="relative z-20 w-full max-w-[1440px] mx-auto px-6">
-        <div className="w-full max-w-[1000px] pl-4 md:pl-4">
-          
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center h-full">
+        
+        {/* Left Text Content */}
+        <motion.div
+          className="flex-1 pt-32 md:pt-0"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+        >
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
             variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.15,
-                },
-              },
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
             }}
+            className="inline-block px-4 py-1.5 rounded-full bg-fintech-emerald/10 border border-fintech-emerald/20 text-fintech-emerald text-sm font-semibold tracking-wide uppercase mb-6"
           >
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-              }}
-              className="flex items-baseline space-x-2 text-white mb-6"
-            >
-              <span className="text-[24px] font-bold tracking-tight" style={{ fontFamily: "Playfair Display, serif" }}>
-                Wealthsimple
-              </span>
-              <span className="text-[24px] font-sans font-normal tracking-wide">Active trading</span>
-            </motion.div>
-
-            <h2
-              className="text-[clamp(1.875rem,1.69vw+1.55rem,3rem)] font-bold text-white leading-[116%] tracking-[0.005em] mb-10 font-sans"
-            >
-              <motion.span
-                className="block"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-                }}
-              >
-                Trade like a pro
-              </motion.span>
-              <motion.span
-                className="block"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-                }}
-              >
-                with faster tools,
-              </motion.span>
-              <motion.span
-                className="block"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-                }}
-              >
-                better benefits, and
-              </motion.span>
-              <motion.span
-                className="block"
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-                }}
-              >
-                $0 commissions
-              </motion.span>
-            </h2> 
-
-            <motion.button
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
-              }}
-              className="w-[88px] h-[54px] rounded-full border border-white flex items-center justify-center text-white hover:bg-white/10 transition-colors group cursor-pointer"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform group-hover:translate-x-1 transition-transform">
-                <path d="M5 12h14"></path>
-                <path d="M12 5l7 7-7 7"></path>
-              </svg>
-            </motion.button>
+            Active Trading
           </motion.div>
-        </div>
+
+          <h2
+            className="text-4xl md:text-6xl font-bold text-white leading-tight mb-8 font-sans"
+          >
+            <motion.span className="block" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}>
+              Execute with
+            </motion.span>
+            <motion.span className="block text-fintech-teal" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}>
+              Precision.
+            </motion.span>
+          </h2> 
+          
+          <motion.p
+             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+             className="text-lg md:text-xl text-neutral-400 mb-10 max-w-lg leading-relaxed"
+          >
+            Advanced tools, instant execution, and zero commissions. Build your strategy on a platform designed for serious traders.
+          </motion.p>
+
+          <motion.button
+            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+            className="fintech-btn-primary group"
+          >
+            Start trading today
+            <span className="inline-block ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+          </motion.button>
+        </motion.div>
+
+        {/* Right Floating UI */}
+        <motion.div
+          className="flex-1 w-full relative h-[400px] md:h-[600px] hidden md:flex items-center justify-center mt-12 md:mt-0 perspective-1000"
+          initial={{ opacity: 0, x: 50, rotateY: 20 }}
+          whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          {/* Glass Mockup Frame */}
+          <div className="fintech-glass w-full max-w-md h-[450px] relative shadow-2xl border-white/20 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-700 ease-out flex flex-col p-6">
+            
+            <div className="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
+               <div>
+                  <p className="text-white font-bold text-xl">AAPL</p>
+                  <p className="text-neutral-500 text-xs uppercase">Apple Inc.</p>
+               </div>
+               <div className="text-right">
+                  <p className="text-white font-bold text-xl">$189.43</p>
+                  <p className="text-fintech-emerald text-sm">+1.24%</p>
+               </div>
+            </div>
+
+            {/* Mock Chart Area */}
+            <div className="flex-1 flex items-end relative overflow-hidden mb-6">
+                <svg viewBox="0 0 100 50" className="w-full h-full preserve-3d" preserveAspectRatio="none">
+                   <defs>
+                     <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                       <stop offset="0%" stopColor="#10b981" stopOpacity="0.4" />
+                       <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
+                     </linearGradient>
+                   </defs>
+                   <path d="M0,50 L0,30 Q10,10 20,25 T40,15 T60,20 T80,5 T100,10 L100,50 Z" fill="url(#chartGrad)" />
+                   <path d="M0,30 Q10,10 20,25 T40,15 T60,20 T80,5 T100,10" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+            </div>
+
+            {/* Mock Buttons */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white/10 py-3 rounded-lg text-center text-white font-semibold">Buy</div>
+              <div className="bg-fintech-dark py-3 rounded-lg text-center text-white font-semibold border border-white/10">Sell</div>
+            </div>
+            
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

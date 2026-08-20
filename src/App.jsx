@@ -2,14 +2,22 @@ import React, { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
 import { initTidioChat } from './utils/supportChat';
+import { useAuth } from './contexts/AuthContext';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  const { user } = useAuth();
 
   useEffect(() => {
     initTidioChat();
   }, []);
+
+  // Simple routing based on state and auth
+  if (user) {
+    return <Dashboard onLogout={() => setCurrentPage('home')} />;
+  }
 
   return (
     <div className="relative">

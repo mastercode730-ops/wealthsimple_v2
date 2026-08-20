@@ -2,28 +2,28 @@ import React, { useState } from "react";
 import logo from "../assets/ws-wordmark-refresh.48a6eb42.svg";
 import coinsImg from "../assets/millionaire-login.webp";
 import { openSupportChat } from "../utils/supportChat";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = ({ onBack, onSignupClick }) => {
-  const [loginAttempts, setLoginAttempts] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const newAttempts = loginAttempts + 1;
-    setLoginAttempts(newAttempts);
+    setErrorMessage("");
+    setIsLoading(true);
 
-    if (newAttempts >= 3) {
-      setErrorMessage("Your account is on hold due to suspicious activity. Contact support on chat.");
-      setTimeout(() => {
-        openSupportChat();
-      }, 3000);
-    } else {
-      setErrorMessage("Incorrect username or password");
+    try {
+      await login(email, password);
+      // App.jsx will automatically route to Dashboard due to user state change
+    } catch (error) {
+      setErrorMessage(error.message || "Incorrect username or password");
+    } finally {
+      setIsLoading(false);
     }
-
-    setPassword("");
   };
 
   return (
@@ -167,8 +167,12 @@ const Login = ({ onBack, onSignupClick }) => {
               </div>
 
               {/* Log In Button */}
-              <button className="w-full max-w-[160px] mx-auto bg-[#f0f0f0] text-black font-semibold text-[15px] py-[13px] rounded-full hover:bg-white transition-colors mt-4">
-                Log in
+              <button 
+                type="submit"
+                disabled={isLoading}
+                className="w-full max-w-[160px] mx-auto bg-[#f0f0f0] text-black font-semibold text-[15px] py-[13px] rounded-full hover:bg-white transition-colors mt-4 disabled:opacity-50"
+              >
+                {isLoading ? 'Logging in...' : 'Log in'}
               </button>
 
               {/* Passkey Button */}
