@@ -25,6 +25,22 @@ const GlobalFloatingButtons = () => {
     }
   }, [messages, isOpen, isTyping]);
 
+  useEffect(() => {
+    const handleOpenChat = () => setIsOpen(true);
+    const handleCloseChat = () => setIsOpen(false);
+    const handleToggleChat = () => setIsOpen((prev) => !prev);
+
+    window.addEventListener('open-chat', handleOpenChat);
+    window.addEventListener('close-chat', handleCloseChat);
+    window.addEventListener('toggle-chat', handleToggleChat);
+
+    return () => {
+      window.removeEventListener('open-chat', handleOpenChat);
+      window.removeEventListener('close-chat', handleCloseChat);
+      window.removeEventListener('toggle-chat', handleToggleChat);
+    };
+  }, []);
+
   const quickQuestions = [
     "What are your fees?",
     "How do I open an account?",

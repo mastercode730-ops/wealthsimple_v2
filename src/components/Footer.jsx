@@ -87,9 +87,21 @@ const Footer = () => {
                   const name = isObject ? link.name : link;
                   const icon = isObject ? link.icon : null;
                   
+                  const handleClick = (e) => {
+                    const cleanName = name ? name.toLowerCase() : '';
+                    if (cleanName.includes('help') || cleanName.includes('contact')) {
+                      e.preventDefault();
+                      window.dispatchEvent(new CustomEvent('open-chat'));
+                    }
+                  };
+
                   return (
                     <li key={linkIdx}>
-                      <a href="#" className="text-[15px] hover:underline flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
+                      <a 
+                        href="#" 
+                        onClick={handleClick}
+                        className="text-[15px] hover:underline flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+                      >
                         {icon && <span className="opacity-70">{icon}</span>}
                         {name}
                       </a>

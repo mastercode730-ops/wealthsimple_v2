@@ -215,7 +215,11 @@ const Login = ({ onBack, onSignupClick }) => {
         <div className="w-full px-4 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center text-[13px] sm:text-[15px] text-white font-bold border-t border-[#1a1a1a]">
           <a
             href="#"
-            className="underline hover:text-gray-300 mb-4 md:mb-0 decoration-1 underline-offset-[3px] whitespace-nowrap"
+            onClick={(e) => {
+              e.preventDefault();
+              window.dispatchEvent(new CustomEvent('open-chat'));
+            }}
+            className="underline hover:text-gray-300 mb-4 md:mb-0 decoration-1 underline-offset-[3px] whitespace-nowrap cursor-pointer"
           >
             Help Centre
           </a>
