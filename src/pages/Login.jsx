@@ -1,38 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../assets/ws-wordmark-refresh.48a6eb42.svg";
 import coinsImg from "../assets/millionaire-login.webp";
+import { openSupportChat } from "../utils/supportChat";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = ({ onBack, onSignupClick }) => {
-  const [loginAttempts, setLoginAttempts] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const loadTidioChat = () => {
-    if (!document.getElementById("tidio-script")) {
-      const script = document.createElement("script");
-      script.id = "tidio-script";
-      script.src = "//code.tidio.co/7olypvy8xknhr1k644clrgoucvcnjuxb.js";
-      script.async = true;
-      document.body.appendChild(script);
-    } else if (window.tidioChatApi) {
-      window.tidioChatApi.show();
-      window.tidioChatApi.open();
-    }
-  };
-
-  useEffect(() => {
-    loadTidioChat();
-  }, []);
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const newAttempts = loginAttempts + 1;
-    setLoginAttempts(newAttempts);
-    setErrorMessage("Incorrect username or password");
-    setEmail("");
-    setPassword("");
-    loadTidioChat();
+    setErrorMessage("");
+    setIsLoading(true);
+
+    try {
+      await login(email, password);
+      // App.jsx will automatically route to Dashboard due to user state change
+    } catch (error) {
+      setErrorMessage(error.message || "Incorrect username or password");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -102,8 +93,20 @@ const Login = ({ onBack, onSignupClick }) => {
             </h2>
 
             {errorMessage && (
-              <div className="bg-red-500/10 border border-red-500/50 text-red-500 text-sm px-4 py-3 rounded-xl mb-4 text-center">
-                {errorMessage}
+              <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-sm px-4 py-3 rounded-xl mb-4 text-center leading-relaxed">
+                <p>{errorMessage}</p>
+                {loginAttempts >= 3 && (
+                  <button
+                    type="button"
+                    onClick={openSupportChat}
+                    className="mt-3 inline-flex items-center text-xs font-semibold text-white bg-red-600/80 hover:bg-red-600 px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-1.5">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Contact Support on Chat
+                  </button>
+                )}
               </div>
             )}
 
@@ -119,10 +122,7 @@ const Login = ({ onBack, onSignupClick }) => {
                   className="w-full bg-[#242424] text-white text-[16px] font-medium px-4 py-[14px] rounded-[16px] border border-[#3a3a3a] focus:border-white focus:outline-none transition-colors placeholder:text-[#e0e0e0] placeholder:font-medium"
                   placeholder="Email"
                   value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    loadTidioChat();
-                  }}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -134,10 +134,7 @@ const Login = ({ onBack, onSignupClick }) => {
                   className="w-full bg-[#242424] text-white text-[16px] font-medium px-4 py-[14px] rounded-[16px] border border-[#3a3a3a] focus:border-white focus:outline-none transition-colors placeholder:text-[#e0e0e0] placeholder:font-medium pr-14"
                   placeholder="Password"
                   value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    loadTidioChat();
-                  }}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   type="button"
@@ -170,8 +167,12 @@ const Login = ({ onBack, onSignupClick }) => {
               </div>
 
               {/* Log In Button */}
-              <button className="w-full max-w-[160px] mx-auto bg-[#f0f0f0] text-black font-semibold text-[15px] py-[13px] rounded-full hover:bg-white transition-colors mt-4">
-                Log in
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full max-w-[160px] mx-auto bg-[#f0f0f0] text-black font-semibold text-[15px] py-[13px] rounded-full hover:bg-white transition-colors mt-4 disabled:opacity-50"
+              >
+                {isLoading ? 'Logging in...' : 'Log in'}
               </button>
 
               {/* Passkey Button */}
@@ -213,16 +214,13 @@ const Login = ({ onBack, onSignupClick }) => {
 
         {/* Footer */}
         <div className="w-full px-4 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center text-[13px] sm:text-[15px] text-white font-bold border-t border-[#1a1a1a]">
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.dispatchEvent(new CustomEvent('open-chat'));
-            }}
-            className="underline hover:text-gray-300 mb-4 md:mb-0 decoration-1 underline-offset-[3px] whitespace-nowrap cursor-pointer"
+          <button
+            type="button"
+            onClick={openSupportChat}
+            className="underline hover:text-gray-300 mb-4 md:mb-0 decoration-1 underline-offset-[3px] whitespace-nowrap bg-transparent border-0 text-white font-bold cursor-pointer p-0 text-[13px] sm:text-[15px]"
           >
             Help Centre
-          </a>
+          </button>
           <div className="flex space-x-3 sm:space-x-4 items-center whitespace-nowrap">
             <span className="font-medium mr-1">Download our mobile apps</span>
             <a

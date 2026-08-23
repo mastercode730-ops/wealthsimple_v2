@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/ws-wordmark-refresh.48a6eb42.svg";
+import { useAuth } from "../contexts/AuthContext";
 
 const Signup = ({ onBack, onLoginClick }) => {
   const [step, setStep] = useState(1);
@@ -8,6 +9,7 @@ const Signup = ({ onBack, onLoginClick }) => {
     accountType: "Cash Account",
     fullName: "",
     email: "",
+    password: "",
     phone: "",
     callOption: "call_now",
     preferredTime: "As soon as possible",
@@ -48,19 +50,36 @@ const Signup = ({ onBack, onLoginClick }) => {
     const newErrors = {};
     if (!formData.fullName.trim()) newErrors.fullName = "Full name is required";
     if (!formData.email.trim() || !formData.email.includes("@")) newErrors.email = "Valid email is required";
+    if (!formData.password || formData.password.length < 6) newErrors.password = "Password must be at least 6 characters";
     if (!formData.phone.trim() || formData.phone.length < 7) newErrors.phone = "Valid phone number is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNextStep = (e) => {
+  const { signup } = useAuth();
+  const [submitError, setSubmitError] = useState("");
+
+  const handleNextStep = async (e) => {
     e.preventDefault();
     if (step === 1) {
       if (validateStep1()) {
         setStep(2);
       }
     } else if (step === 2) {
-      setStep(3);
+      // Validate step 2 if needed
+      setSubmitError("");
+      try {
+        await signup({
+          email: formData.email,
+          password: formData.password,
+          fullName: formData.fullName,
+          phone: formData.phone,
+          accountType: formData.accountType
+        });
+        setStep(3);
+      } catch (err) {
+        setSubmitError(err.message || 'Registration failed');
+      }
     }
   };
 
@@ -206,6 +225,22 @@ const Signup = ({ onBack, onLoginClick }) => {
 
                     <div>
                       <label className="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">
+                        Password
+                      </label>
+                      <input
+                        type="password"
+                        placeholder="••••••••"
+                        value={formData.password}
+                        onChange={(e) => handleInputChange("password", e.target.value)}
+                        className={`w-full bg-[#242424] text-white text-[15px] px-4 py-3.5 rounded-xl border ${
+                          errors.password ? "border-red-500" : "border-[#3a3a3a] focus:border-white"
+                        } outline-none transition-colors placeholder:text-neutral-500`}
+                      />
+                      {errors.password && <p className="text-red-400 text-xs mt-1">{errors.password}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">
                         Phone Number (for verification call)
                       </label>
                       <input
@@ -220,6 +255,8 @@ const Signup = ({ onBack, onLoginClick }) => {
                       {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
                     </div>
                   </div>
+
+                  {submitError && <div className="text-red-400 text-sm text-center font-medium bg-red-500/10 py-2 rounded-lg border border-red-500/20">{submitError}</div>}
 
                   <button
                     type="submit"

@@ -6,14 +6,21 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        'ws-off-white': '#F6F3EE',
-        'ws-dark': '#1a1a1a',
-        'ws-yellow': '#fdeca6',
-      },
       fontFamily: {
-        'sans': ['Inter', 'sans-serif'],
-        'serif': ['Playfair Display', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+      },
+      colors: {
+        fintech: {
+          dark: '#0a0a0a',
+          darker: '#050505',
+          card: '#141414',
+          cardHover: '#1a1a1a',
+          emerald: '#10b981',
+          teal: '#14b8a6',
+          blue: '#3b82f6',
+          border: '#262626',
+        }
       }
     },
   },

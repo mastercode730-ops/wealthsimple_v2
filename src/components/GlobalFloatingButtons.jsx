@@ -26,18 +26,14 @@ const GlobalFloatingButtons = () => {
   }, [messages, isOpen, isTyping]);
 
   useEffect(() => {
-    const handleOpenChat = () => setIsOpen(true);
-    const handleCloseChat = () => setIsOpen(false);
-    const handleToggleChat = () => setIsOpen((prev) => !prev);
-
+    const handleOpenChat = () => {
+      setIsOpen(true);
+    };
+    window.addEventListener('open-support-chat', handleOpenChat);
     window.addEventListener('open-chat', handleOpenChat);
-    window.addEventListener('close-chat', handleCloseChat);
-    window.addEventListener('toggle-chat', handleToggleChat);
-
     return () => {
+      window.removeEventListener('open-support-chat', handleOpenChat);
       window.removeEventListener('open-chat', handleOpenChat);
-      window.removeEventListener('close-chat', handleCloseChat);
-      window.removeEventListener('toggle-chat', handleToggleChat);
     };
   }, []);
 
@@ -116,7 +112,7 @@ const GlobalFloatingButtons = () => {
                   <p className="text-xs text-neutral-400">Virtual Assistant • Online</p>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
                 className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
                 aria-label="Close Chat"
@@ -136,11 +132,10 @@ const GlobalFloatingButtons = () => {
                   className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`max-w-[84%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-xs ${
-                      msg.sender === 'user'
+                    className={`max-w-[84%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-xs ${msg.sender === 'user'
                         ? 'bg-[#111111] text-white rounded-br-none'
                         : 'bg-white border border-neutral-200/80 text-neutral-800 rounded-bl-none'
-                    }`}
+                      }`}
                   >
                     {msg.text}
                   </div>
