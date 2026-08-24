@@ -4,13 +4,13 @@ import { openSupportChat } from '../utils/supportChat';
 
 const Footer = () => {
   return (
-    <footer className="bg-fintech-darker border-t border-fintech-border pt-20 pb-10">
+    <footer className="bg-fintech-light border-t border-fintech-border pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Top Section: Branding & Newsletter */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-20 border-b border-fintech-border pb-16">
           <div className="flex-1 max-w-sm">
-            <img src={logoMark} alt="Wealthsimple" className="h-8 mb-6 brightness-0 invert" />
+            <img src={logoMark} alt="Wealthsimple" className="h-8 mb-6 brightness-0" style={{ filter: "brightness(0) saturate(100%) hue-rotate(0deg)" }} />
             <p className="text-neutral-400 text-sm leading-relaxed mb-6">
               Wealthsimple is on a mission to help everyone achieve financial freedom, no matter who they are or how much they have.
             </p>
@@ -19,7 +19,7 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Join our newsletter"
-                className="bg-black border border-fintech-border text-white text-sm px-4 py-2.5 rounded-lg flex-1 outline-none focus:border-fintech-emerald transition-colors"
+                className="bg-white border border-fintech-border text-fintech-textDark text-sm px-4 py-2.5 rounded-lg flex-1 outline-none focus:border-fintech-emerald transition-colors"
               />
               <button className="bg-white text-black px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-neutral-200 transition-colors">
                 Subscribe
@@ -29,7 +29,7 @@ const Footer = () => {
 
           <div className="flex gap-4">
             {['twitter', 'instagram', 'linkedin'].map((social) => (
-              <div key={social} className="w-10 h-10 rounded-full border border-fintech-border flex items-center justify-center cursor-pointer hover:border-white transition-colors text-white">
+              <div key={social} className="w-10 h-10 rounded-full border border-fintech-border flex items-center justify-center cursor-pointer hover:border-white transition-colors text-fintech-textDark">
                 {/* Placeholder Icon */}
                 <div className="w-3 h-3 bg-white rounded-full"></div>
               </div>
@@ -46,7 +46,7 @@ const Footer = () => {
             { title: "Contact", links: ["Support", "Contact Us", "Media"] }
           ].map((column, idx) => (
             <div key={idx} className="flex flex-col">
-              <h4 className="text-white font-semibold mb-6 uppercase tracking-wider text-sm">{column.title}</h4>
+              <h4 className="text-fintech-textDark font-semibold mb-6 uppercase tracking-wider text-sm">{column.title}</h4>
               <ul className="space-y-4">
                 {column.links.map((link, i) => {
                   const isHelpLink = link === "Help Centre" || link === "Support" || link === "Contact Us";
@@ -60,7 +60,7 @@ const Footer = () => {
                             openSupportChat();
                           }
                         }}
-                        className="text-neutral-500 hover:text-white transition-colors text-sm"
+                        className="text-neutral-500 hover:text-fintech-textDark transition-colors text-sm"
                       >
                         {link}
                       </a>

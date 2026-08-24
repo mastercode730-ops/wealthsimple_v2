@@ -84,7 +84,7 @@ const Signup = ({ onBack, onLoginClick }) => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#0f0f0f] text-white font-sans flex flex-col justify-between selection:bg-white selection:text-black">
+    <div className="w-full min-h-screen bg-[#0f0f0f] text-fintech-textDark font-sans flex flex-col justify-between selection:bg-white selection:text-black">
       {/* Top Header Navigation */}
       <header className="w-full px-6 md:px-12 py-6 flex items-center justify-between border-b border-[#222]">
         <div 
@@ -102,7 +102,7 @@ const Signup = ({ onBack, onLoginClick }) => {
           <span className="text-neutral-400 text-sm hidden sm:inline">Already have an account?</span>
           <button
             onClick={onLoginClick}
-            className="text-white text-sm font-semibold border border-neutral-700 hover:border-white px-5 py-2 rounded-full transition-colors cursor-pointer"
+            className="text-fintech-textDark text-sm font-semibold border border-neutral-700 hover:border-white px-5 py-2 rounded-full transition-colors cursor-pointer"
           >
             Log in
           </button>
@@ -140,10 +140,10 @@ const Signup = ({ onBack, onLoginClick }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.25 }}
-                className="bg-[#1c1c1c] border border-[#2b2b2b] rounded-[28px] p-6 sm:p-10 shadow-2xl"
+                className="bg-[#1c1c1c] border border-[#2b2b2b] rounded-[28px] p-6 sm:p-10 shadow-md"
               >
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
+                  <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-fintech-textDark mb-2">
                     Get started with Wealthsimple
                   </h1>
                   <p className="text-neutral-400 text-sm">
@@ -164,7 +164,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                           onClick={() => handleInputChange("accountType", type.id)}
                           className={`p-4 rounded-2xl border cursor-pointer transition-all flex items-start justify-between ${
                             formData.accountType === type.id
-                              ? "bg-[#282828] border-white text-white shadow-md"
+                              ? "bg-[#282828] border-white text-fintech-textDark shadow-md"
                               : "bg-[#222222]/60 border-[#333] hover:border-neutral-500 text-neutral-300"
                           }`}
                         >
@@ -181,7 +181,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                             formData.accountType === type.id ? "border-white bg-white text-black" : "border-neutral-500"
                           }`}>
                             {formData.accountType === type.id && (
-                              <div className="w-2 h-2 rounded-full bg-black" />
+                              <div className="w-2 h-2 rounded-full bg-white" />
                             )}
                           </div>
                         </div>
@@ -200,7 +200,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                         placeholder="e.g. Sarah Jenkins"
                         value={formData.fullName}
                         onChange={(e) => handleInputChange("fullName", e.target.value)}
-                        className={`w-full bg-[#242424] text-white text-[15px] px-4 py-3.5 rounded-xl border ${
+                        className={`w-full bg-[#242424] text-fintech-textDark text-[15px] px-4 py-3.5 rounded-xl border ${
                           errors.fullName ? "border-red-500" : "border-[#3a3a3a] focus:border-white"
                         } outline-none transition-colors placeholder:text-neutral-500`}
                       />
@@ -216,7 +216,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                         placeholder="name@example.com"
                         value={formData.email}
                         onChange={(e) => handleInputChange("email", e.target.value)}
-                        className={`w-full bg-[#242424] text-white text-[15px] px-4 py-3.5 rounded-xl border ${
+                        className={`w-full bg-[#242424] text-fintech-textDark text-[15px] px-4 py-3.5 rounded-xl border ${
                           errors.email ? "border-red-500" : "border-[#3a3a3a] focus:border-white"
                         } outline-none transition-colors placeholder:text-neutral-500`}
                       />
@@ -232,7 +232,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                         placeholder="••••••••"
                         value={formData.password}
                         onChange={(e) => handleInputChange("password", e.target.value)}
-                        className={`w-full bg-[#242424] text-white text-[15px] px-4 py-3.5 rounded-xl border ${
+                        className={`w-full bg-[#242424] text-fintech-textDark text-[15px] px-4 py-3.5 rounded-xl border ${
                           errors.password ? "border-red-500" : "border-[#3a3a3a] focus:border-white"
                         } outline-none transition-colors placeholder:text-neutral-500`}
                       />
@@ -248,7 +248,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                         placeholder="+1 (555) 000-0000"
                         value={formData.phone}
                         onChange={(e) => handleInputChange("phone", e.target.value)}
-                        className={`w-full bg-[#242424] text-white text-[15px] px-4 py-3.5 rounded-xl border ${
+                        className={`w-full bg-[#242424] text-fintech-textDark text-[15px] px-4 py-3.5 rounded-xl border ${
                           errors.phone ? "border-red-500" : "border-[#3a3a3a] focus:border-white"
                         } outline-none transition-colors placeholder:text-neutral-500`}
                       />
@@ -276,7 +276,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.25 }}
-                className="bg-[#1c1c1c] border border-[#2b2b2b] rounded-[28px] p-6 sm:p-10 shadow-2xl"
+                className="bg-[#1c1c1c] border border-[#2b2b2b] rounded-[28px] p-6 sm:p-10 shadow-md"
               >
                 <div className="text-center mb-8">
                   <div className="w-12 h-12 bg-neutral-800 rounded-full flex items-center justify-center mx-auto mb-4 border border-neutral-700">
@@ -284,7 +284,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                     </svg>
                   </div>
-                  <h2 className="text-2xl font-bold tracking-tight text-white mb-2">
+                  <h2 className="text-2xl font-bold tracking-tight text-fintech-textDark mb-2">
                     Final Call Verification
                   </h2>
                   <p className="text-neutral-400 text-sm">
@@ -303,7 +303,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                       onClick={() => handleInputChange("callOption", "call_now")}
                       className={`p-4 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
                         formData.callOption === "call_now"
-                          ? "bg-[#282828] border-white text-white"
+                          ? "bg-[#282828] border-white text-fintech-textDark"
                           : "bg-[#222222]/60 border-[#333] hover:border-neutral-500 text-neutral-300"
                       }`}
                     >
@@ -321,7 +321,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                       <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
                         formData.callOption === "call_now" ? "border-white bg-white text-black" : "border-neutral-500"
                       }`}>
-                        {formData.callOption === "call_now" && <div className="w-2 h-2 rounded-full bg-black" />}
+                        {formData.callOption === "call_now" && <div className="w-2 h-2 rounded-full bg-white" />}
                       </div>
                     </div>
 
@@ -329,7 +329,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                       onClick={() => handleInputChange("callOption", "schedule_call")}
                       className={`p-4 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${
                         formData.callOption === "schedule_call"
-                          ? "bg-[#282828] border-white text-white"
+                          ? "bg-[#282828] border-white text-fintech-textDark"
                           : "bg-[#222222]/60 border-[#333] hover:border-neutral-500 text-neutral-300"
                       }`}
                     >
@@ -348,7 +348,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                       <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${
                         formData.callOption === "schedule_call" ? "border-white bg-white text-black" : "border-neutral-500"
                       }`}>
-                        {formData.callOption === "schedule_call" && <div className="w-2 h-2 rounded-full bg-black" />}
+                        {formData.callOption === "schedule_call" && <div className="w-2 h-2 rounded-full bg-white" />}
                       </div>
                     </div>
                   </div>
@@ -366,7 +366,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                       <select
                         value={formData.preferredTime}
                         onChange={(e) => handleInputChange("preferredTime", e.target.value)}
-                        className="w-full bg-[#242424] text-white text-sm px-4 py-3.5 rounded-xl border border-[#3a3a3a] focus:border-white outline-none"
+                        className="w-full bg-[#242424] text-fintech-textDark text-sm px-4 py-3.5 rounded-xl border border-[#3a3a3a] focus:border-white outline-none"
                       >
                         <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
                         <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
@@ -383,7 +383,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                     <select
                       value={formData.language}
                       onChange={(e) => handleInputChange("language", e.target.value)}
-                      className="w-full bg-[#242424] text-white text-sm px-4 py-3.5 rounded-xl border border-[#3a3a3a] focus:border-white outline-none"
+                      className="w-full bg-[#242424] text-fintech-textDark text-sm px-4 py-3.5 rounded-xl border border-[#3a3a3a] focus:border-white outline-none"
                     >
                       <option value="English">English</option>
                       <option value="French">Français</option>
@@ -394,7 +394,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                     <button
                       type="button"
                       onClick={() => setStep(1)}
-                      className="w-1/3 bg-[#262626] text-white font-semibold text-sm py-4 rounded-full hover:bg-[#333] transition-colors cursor-pointer"
+                      className="w-1/3 bg-[#262626] text-fintech-textDark font-semibold text-sm py-4 rounded-full hover:bg-[#333] transition-colors cursor-pointer"
                     >
                       Back
                     </button>
@@ -416,7 +416,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
-                className="bg-[#1c1c1c] border border-[#2b2b2b] rounded-[28px] p-8 sm:p-10 shadow-2xl text-center"
+                className="bg-[#1c1c1c] border border-[#2b2b2b] rounded-[28px] p-8 sm:p-10 shadow-md text-center"
               >
                 <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-6 text-emerald-400">
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -424,12 +424,12 @@ const Signup = ({ onBack, onLoginClick }) => {
                   </svg>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-3">
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-fintech-textDark mb-3">
                   Registration Received!
                 </h2>
 
                 <p className="text-neutral-300 text-sm leading-relaxed mb-6">
-                  Thank you, <span className="font-semibold text-white">{formData.fullName}</span>. Your registration for <span className="text-white font-semibold">{formData.accountType}</span> has been submitted.
+                  Thank you, <span className="font-semibold text-fintech-textDark">{formData.fullName}</span>. Your registration for <span className="text-fintech-textDark font-semibold">{formData.accountType}</span> has been submitted.
                 </p>
 
                 {/* Call Status Box */}
@@ -441,7 +441,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                     <span>Verification Call Scheduled</span>
                   </div>
                   <p className="text-xs text-neutral-300 leading-relaxed">
-                    A Wealthsimple onboarding specialist will call you at <strong className="text-white font-mono">{formData.phone}</strong> {formData.callOption === "call_now" ? "shortly within 2 minutes" : `during your selected slot (${formData.preferredTime})`} to finalize your account verification.
+                    A Wealthsimple onboarding specialist will call you at <strong className="text-fintech-textDark font-mono">{formData.phone}</strong> {formData.callOption === "call_now" ? "shortly within 2 minutes" : `during your selected slot (${formData.preferredTime})`} to finalize your account verification.
                   </p>
                   <div className="pt-2 border-t border-[#333] flex justify-between text-[11px] text-neutral-400">
                     <span>Language: <strong>{formData.language}</strong></span>
@@ -458,7 +458,7 @@ const Signup = ({ onBack, onLoginClick }) => {
                   </button>
                   <button
                     onClick={onLoginClick}
-                    className="w-full bg-[#282828] border border-neutral-700 text-white font-semibold text-sm py-3.5 rounded-full hover:bg-[#333] transition-colors cursor-pointer"
+                    className="w-full bg-[#282828] border border-neutral-700 text-fintech-textDark font-semibold text-sm py-3.5 rounded-full hover:bg-[#333] transition-colors cursor-pointer"
                   >
                     Go to Login Page
                   </button>

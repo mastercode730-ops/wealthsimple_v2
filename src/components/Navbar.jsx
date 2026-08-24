@@ -8,7 +8,7 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
     <div className="fixed top-[8px] left-[8px] right-[8px] z-50">
       <nav className="bg-ws-off-white rounded-[12px] px-4 py-3 md:px-6 md:py-4 flex justify-between items-center shadow-sm relative">
         {/* Logo */}
-        <img src={logo} alt="Wealthsimple" className="h-8 md:h-[43px] w-auto cursor-pointer" />
+        <img src={logo} alt="Wealthsimple" className="h-8 md:h-[43px] w-auto cursor-pointer brightness-0 invert-0" style={{ filter: "brightness(0) saturate(100%) hue-rotate(0deg)" }} />
 
         {/* Actions */}
         <div className="flex items-center space-x-2 md:space-x-3 shrink-0">
@@ -32,7 +32,7 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
           {/* Log in */}
           <button 
             onClick={onLoginClick}
-            className="hidden md:block bg-transparent border border-black text-ws-dark px-5 py-2.5 rounded-full font-medium hover:bg-neutral-100 transition-colors cursor-pointer"
+            className="hidden md:block bg-transparent border border-black text-fintech-textDark px-5 py-2.5 rounded-full font-medium hover:bg-neutral-100 transition-colors cursor-pointer"
           >
             Log in
           </button>
@@ -40,7 +40,7 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
           {/* Get started */}
           <button 
             onClick={onSignupClick}
-            className="hidden md:block bg-[#2d2a26] text-white px-5 py-3.5 rounded-full font-medium hover:bg-black transition-colors cursor-pointer"
+            className="hidden md:block bg-fintech-emerald text-white px-5 py-3.5 rounded-full font-medium hover:bg-emerald-600 transition-colors cursor-pointer"
           >
             Get started
           </button>
@@ -69,7 +69,7 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
 
       {/* Mobile Menu Dropdown */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 mt-2 bg-ws-off-white rounded-[12px] shadow-lg border border-neutral-200 p-4 flex flex-col gap-3">
+        <div className="md:hidden absolute top-full left-0 right-0 mt-2 bg-ws-off-white rounded-[12px] shadow-sm border border-neutral-200 p-4 flex flex-col gap-3">
           <button 
             onClick={() => {
               setIsMenuOpen(false);
@@ -84,7 +84,7 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
               setIsMenuOpen(false);
               onSignupClick();
             }}
-            className="w-full bg-[#2d2a26] text-white px-5 py-3 rounded-full font-medium hover:bg-black transition-colors cursor-pointer"
+            className="w-full bg-fintech-emerald text-white px-5 py-3 rounded-full font-medium hover:bg-emerald-600 transition-colors cursor-pointer"
           >
             Get started
           </button>

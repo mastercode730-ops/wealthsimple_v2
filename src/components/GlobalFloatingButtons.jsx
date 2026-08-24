@@ -96,10 +96,10 @@ const GlobalFloatingButtons = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="mb-4 w-[350px] sm:w-[380px] h-[500px] bg-white rounded-3xl shadow-2xl border border-neutral-200/80 flex flex-col overflow-hidden text-neutral-800 font-sans"
+            className="mb-4 w-[350px] sm:w-[380px] h-[500px] bg-white rounded-3xl shadow-md border border-neutral-200/80 flex flex-col overflow-hidden text-neutral-800 font-sans"
           >
             {/* Chat Header */}
-            <div className="bg-[#111111] text-white px-5 py-4 flex items-center justify-between shadow-md">
+            <div className="bg-[#111111] text-fintech-textDark px-5 py-4 flex items-center justify-between shadow-md">
               <div className="flex items-center space-x-3">
                 <div className="relative">
                   <div className="w-9 h-9 rounded-full bg-[#f6eddd] flex items-center justify-center font-bold text-black text-sm">
@@ -108,13 +108,13 @@ const GlobalFloatingButtons = () => {
                   <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[#111111]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm leading-tight text-white">Wealthsimple Support</h3>
+                  <h3 className="font-semibold text-sm leading-tight text-fintech-textDark">Wealthsimple Support</h3>
                   <p className="text-xs text-neutral-400">Virtual Assistant • Online</p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-neutral-400 hover:text-fintech-textDark hover:bg-neutral-800 transition-colors"
                 aria-label="Close Chat"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -133,7 +133,7 @@ const GlobalFloatingButtons = () => {
                 >
                   <div
                     className={`max-w-[84%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-xs ${msg.sender === 'user'
-                        ? 'bg-[#111111] text-white rounded-br-none'
+                        ? 'bg-[#111111] text-fintech-textDark rounded-br-none'
                         : 'bg-white border border-neutral-200/80 text-neutral-800 rounded-bl-none'
                       }`}
                   >
@@ -191,7 +191,7 @@ const GlobalFloatingButtons = () => {
               <button
                 type="submit"
                 disabled={!inputValue.trim()}
-                className="w-9 h-9 rounded-full bg-[#111111] disabled:bg-neutral-300 text-white flex items-center justify-center transition-all cursor-pointer disabled:cursor-not-allowed shrink-0"
+                className="w-9 h-9 rounded-full bg-[#111111] disabled:bg-neutral-300 text-fintech-textDark flex items-center justify-center transition-all cursor-pointer disabled:cursor-not-allowed shrink-0"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="ml-0.5">
                   <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -206,7 +206,7 @@ const GlobalFloatingButtons = () => {
       {/* Floating Chat Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-full bg-[#111111] text-white flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer border border-neutral-800"
+        className="w-14 h-14 rounded-full bg-[#111111] text-fintech-textDark flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer border border-neutral-800"
         aria-label="Toggle Chat"
       >
         <AnimatePresence mode="wait">

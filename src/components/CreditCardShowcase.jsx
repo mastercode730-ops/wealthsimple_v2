@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const CreditCardShowcase = () => {
   return (
-    <section className="relative w-full py-24 lg:py-32 overflow-hidden bg-black border-t border-fintech-border/50">
+    <section className="relative w-full py-24 lg:py-32 overflow-hidden bg-white border-t border-fintech-border/50">
       
       {/* Background Atmosphere */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-fintech-emerald/10 via-black to-black opacity-60"></div>
@@ -34,12 +34,12 @@ const CreditCardShowcase = () => {
                  <div className="w-8 h-8 rounded-full bg-fintech-emerald/20 flex items-center justify-center">
                     <div className="w-3 h-3 bg-fintech-emerald rounded-full"></div>
                  </div>
-                 <span className="text-white font-serif font-bold tracking-wider">Wealthsimple</span>
+                 <span className="text-fintech-textDark font-serif font-bold tracking-wider">Wealthsimple</span>
               </div>
               
               <div className="absolute bottom-6 left-6">
-                 <p className="text-white font-mono tracking-[0.2em] opacity-80 mb-2">**** **** **** 4092</p>
-                 <p className="text-white text-sm font-medium">VISA INFINITE</p>
+                 <p className="text-fintech-textDark font-mono tracking-[0.2em] opacity-80 mb-2">**** **** **** 4092</p>
+                 <p className="text-fintech-textDark text-sm font-medium">VISA INFINITE</p>
               </div>
            </motion.div>
         </div>
@@ -68,11 +68,11 @@ const CreditCardShowcase = () => {
             <span className="text-[24px] font-bold tracking-tight" style={{ fontFamily: "Playfair Display, serif" }}>
               Wealthsimple
             </span>
-            <span className="text-[24px] font-sans font-normal tracking-wide text-white">Credit card</span>
+            <span className="text-[24px] font-sans font-normal tracking-wide text-fintech-textDark">Credit card</span>
           </motion.div>
 
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight mb-8 font-sans"
+            className="text-4xl md:text-5xl lg:text-6xl font-medium text-fintech-textDark leading-tight mb-8 font-sans"
           >
             <motion.span className="block" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}>
               Spend and conquer.
@@ -95,7 +95,7 @@ const CreditCardShowcase = () => {
               "No foreign transaction fees",
               "Premium travel insurance included"
             ].map((feature, i) => (
-              <li key={i} className="flex items-center text-white">
+              <li key={i} className="flex items-center text-fintech-textDark">
                 <svg className="w-5 h-5 text-fintech-emerald mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 {feature}
               </li>

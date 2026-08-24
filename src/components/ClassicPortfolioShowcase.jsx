@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const ClassicPortfolioShowcase = () => {
   return (
-    <section className="relative w-full py-24 lg:py-32 overflow-hidden bg-black border-t border-fintech-border/50">
+    <section className="relative w-full py-24 lg:py-32 overflow-hidden bg-white border-t border-fintech-border/50">
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 flex flex-col items-center">
         
         {/* Top Text Content (Centered Editorial) */}
@@ -31,7 +31,7 @@ const ClassicPortfolioShowcase = () => {
           </motion.div>
 
           <h2
-            className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-8"
+            className="text-4xl md:text-5xl lg:text-7xl font-bold text-fintech-textDark leading-tight mb-8"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
             <motion.span className="block" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}>
@@ -60,12 +60,12 @@ const ClassicPortfolioShowcase = () => {
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true, amount: 0.3 }}
                transition={{ duration: 0.6, delay: idx * 0.15 }}
-               className="bg-fintech-darker border border-fintech-border p-8 rounded-2xl flex flex-col items-start"
+               className="bg-fintech-light border border-fintech-border p-8 rounded-2xl flex flex-col items-start"
              >
                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-6">
                  <div className="w-4 h-4 bg-white rounded-full"></div>
                </div>
-               <h3 className="text-xl font-semibold text-white mb-3">{benefit.title}</h3>
+               <h3 className="text-xl font-semibold text-fintech-textDark mb-3">{benefit.title}</h3>
                <p className="text-neutral-400 text-sm leading-relaxed">{benefit.text}</p>
              </motion.div>
            ))}

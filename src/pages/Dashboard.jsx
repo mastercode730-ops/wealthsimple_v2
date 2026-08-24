@@ -11,7 +11,7 @@ const Dashboard = ({ onLogout }) => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#0f0f0f] text-white font-sans flex flex-col">
+    <div className="w-full min-h-screen bg-[#0f0f0f] text-fintech-textDark font-sans flex flex-col">
       <header className="w-full px-6 py-4 flex items-center justify-between border-b border-[#222]">
         <img
           src={logo}
@@ -20,7 +20,7 @@ const Dashboard = ({ onLogout }) => {
         />
         <button
           onClick={handleLogout}
-          className="text-white text-sm font-semibold border border-neutral-700 hover:border-white px-5 py-2 rounded-full transition-colors"
+          className="text-fintech-textDark text-sm font-semibold border border-neutral-700 hover:border-white px-5 py-2 rounded-full transition-colors"
         >
           Log out
         </button>

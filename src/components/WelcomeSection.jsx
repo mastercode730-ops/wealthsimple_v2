@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const WelcomeSection = () => {
   return (
-    <section className="py-24 md:py-32 bg-fintech-dark">
+    <section className="py-24 md:py-32 bg-fintech-lighter">
       <div className="container-custom px-[2.5rem] max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
         
         {/* Left Side: Content */}
@@ -25,7 +25,7 @@ const WelcomeSection = () => {
               hidden: { opacity: 0, y: 30 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
             }}
-            className="w-16 h-16 bg-gradient-to-br from-fintech-emerald to-fintech-teal rounded-2xl mb-8 flex items-center justify-center shadow-lg"
+            className="w-16 h-16 bg-gradient-to-br from-fintech-emerald to-fintech-teal rounded-2xl mb-8 flex items-center justify-center shadow-sm"
           >
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -33,7 +33,7 @@ const WelcomeSection = () => {
           </motion.div>
 
           <h2
-            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-white mb-6"
+            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight leading-tight text-fintech-textDark mb-6"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
             <motion.span className="block" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}>
@@ -84,7 +84,7 @@ const WelcomeSection = () => {
                  />
                ))}
              </div>
-             <p className="text-white font-medium mt-6 text-xl">Compounding growth</p>
+             <p className="text-fintech-textDark font-medium mt-6 text-xl">Compounding growth</p>
              <p className="text-neutral-400 text-sm mt-1">Smarter algorithms, better returns.</p>
           </div>
         </motion.div>

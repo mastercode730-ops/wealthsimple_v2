@@ -13,7 +13,7 @@ const FeatureLinks = () => {
   ];
 
   return (
-    <section className="bg-fintech-darker py-16 flex flex-col items-center justify-center border-b border-fintech-border/50">
+    <section className="bg-fintech-light py-16 flex flex-col items-center justify-center border-b border-fintech-border/50">
       <div className="w-full max-w-4xl px-4 flex flex-col items-center">
         <p className="text-neutral-400 text-sm uppercase tracking-[0.2em] font-semibold mb-8 text-center">
           Explore Our Solutions
@@ -28,7 +28,7 @@ const FeatureLinks = () => {
                 key={cat.name}
                 onClick={() => setActiveTab(cat.name)}
                 className={`relative px-6 py-3 rounded-full transition-all duration-300 flex flex-col items-center overflow-hidden outline-none cursor-pointer ${
-                  isActive ? 'text-fintech-darker' : 'text-neutral-300 hover:text-white'
+                  isActive ? 'text-fintech-darker' : 'text-neutral-300 hover:text-fintech-textDark'
                 }`}
               >
                 {/* Active Background Pill */}

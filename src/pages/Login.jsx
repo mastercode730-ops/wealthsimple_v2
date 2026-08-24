@@ -41,23 +41,23 @@ const Login = ({ onBack, onSignupClick }) => {
 
         {/* Content Centered */}
         <div className="flex-1 flex flex-col items-center justify-center text-center max-w-[480px] mx-auto mt-10">
-          <p className="text-white/90 text-[13px] font-semibold tracking-[0.15em] mb-6 uppercase">
+          <p className="text-fintech-textDark/90 text-[13px] font-semibold tracking-[0.15em] mb-6 uppercase">
             Monthly Millionaire
           </p>
 
-          <h1 className="text-white text-[48px] md:text-[52px] font-bold leading-[1.05] tracking-[-0.02em] mb-6 font-sans">
+          <h1 className="text-fintech-textDark text-[48px] md:text-[52px] font-bold leading-[1.05] tracking-[-0.02em] mb-6 font-sans">
             Save money,
             <br />
             become
             <br />a millionaire.
           </h1>
 
-          <p className="text-white text-[15px] leading-[1.5] mb-12 max-w-[420px]">
+          <p className="text-fintech-textDark text-[15px] leading-[1.5] mb-12 max-w-[420px]">
             Each dollar you save is a potential entry to win. Get your 500
             entries by registering and funding your account.{" "}
             <a
               href="#"
-              className="underline hover:text-white underline-offset-2"
+              className="underline hover:text-fintech-textDark underline-offset-2"
             >
               T&Cs apply.
             </a>
@@ -87,8 +87,8 @@ const Login = ({ onBack, onSignupClick }) => {
 
         {/* Main Form Container */}
         <div className="flex-1 flex items-center justify-center px-4 py-4">
-          <div className="w-full max-w-[460px] bg-[#1c1c1c] rounded-[24px] p-6 md:p-8 shadow-2xl">
-            <h2 className="text-white text-[28px] text-center mb-5 tracking-tight font-bold font-sans">
+          <div className="w-full max-w-[460px] bg-[#1c1c1c] rounded-[24px] p-6 md:p-8 shadow-md">
+            <h2 className="text-fintech-textDark text-[28px] text-center mb-5 tracking-tight font-bold font-sans">
               Welcome back
             </h2>
 
@@ -99,7 +99,7 @@ const Login = ({ onBack, onSignupClick }) => {
                   <button
                     type="button"
                     onClick={openSupportChat}
-                    className="mt-3 inline-flex items-center text-xs font-semibold text-white bg-red-600/80 hover:bg-red-600 px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
+                    className="mt-3 inline-flex items-center text-xs font-semibold text-fintech-textDark bg-red-600/80 hover:bg-red-600 px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-1.5">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -119,7 +119,7 @@ const Login = ({ onBack, onSignupClick }) => {
                 <input
                   type="email"
                   id="email"
-                  className="w-full bg-[#242424] text-white text-[16px] font-medium px-4 py-[14px] rounded-[16px] border border-[#3a3a3a] focus:border-white focus:outline-none transition-colors placeholder:text-[#e0e0e0] placeholder:font-medium"
+                  className="w-full bg-[#242424] text-fintech-textDark text-[16px] font-medium px-4 py-[14px] rounded-[16px] border border-[#3a3a3a] focus:border-white focus:outline-none transition-colors placeholder:text-[#e0e0e0] placeholder:font-medium"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -131,14 +131,14 @@ const Login = ({ onBack, onSignupClick }) => {
                 <input
                   type="password"
                   id="password"
-                  className="w-full bg-[#242424] text-white text-[16px] font-medium px-4 py-[14px] rounded-[16px] border border-[#3a3a3a] focus:border-white focus:outline-none transition-colors placeholder:text-[#e0e0e0] placeholder:font-medium pr-14"
+                  className="w-full bg-[#242424] text-fintech-textDark text-[16px] font-medium px-4 py-[14px] rounded-[16px] border border-[#3a3a3a] focus:border-white focus:outline-none transition-colors placeholder:text-[#e0e0e0] placeholder:font-medium pr-14"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   type="button"
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-[#3a3a3a] text-white hover:bg-[#4a4a4a] transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-[#3a3a3a] text-fintech-textDark hover:bg-[#4a4a4a] transition-colors"
                 >
                   <svg
                     width="20"
@@ -160,7 +160,7 @@ const Login = ({ onBack, onSignupClick }) => {
               <div className="pt-1">
                 <a
                   href="#"
-                  className="text-white text-[13px] font-bold underline decoration-1 underline-offset-[3px]"
+                  className="text-fintech-textDark text-[13px] font-bold underline decoration-1 underline-offset-[3px]"
                 >
                   Forgot password?
                 </a>
@@ -178,7 +178,7 @@ const Login = ({ onBack, onSignupClick }) => {
               {/* Passkey Button */}
               <button
                 type="button"
-                className="w-full max-w-[220px] mx-auto bg-transparent border border-[#444] text-white font-semibold text-[14px] py-[13px] rounded-full hover:bg-[#2b2b2b] transition-colors flex items-center justify-center space-x-2 mt-4"
+                className="w-full max-w-[220px] mx-auto bg-transparent border border-[#444] text-fintech-textDark font-semibold text-[14px] py-[13px] rounded-full hover:bg-[#2b2b2b] transition-colors flex items-center justify-center space-x-2 mt-4"
               >
                 <span>Log in with a passkey</span>
                 <svg
@@ -198,12 +198,12 @@ const Login = ({ onBack, onSignupClick }) => {
 
             {/* Sign up prompt */}
             <div className="mt-8 text-center">
-              <p className="text-white text-[14px]">
+              <p className="text-fintech-textDark text-[14px]">
                 Don't have an account?{" "}
                 <button
                   type="button"
                   onClick={onSignupClick}
-                  className="font-bold underline decoration-1 underline-offset-[3px] ml-1 text-white bg-transparent border-0 cursor-pointer p-0"
+                  className="font-bold underline decoration-1 underline-offset-[3px] ml-1 text-fintech-textDark bg-transparent border-0 cursor-pointer p-0"
                 >
                   Sign up
                 </button>
@@ -213,11 +213,11 @@ const Login = ({ onBack, onSignupClick }) => {
         </div>
 
         {/* Footer */}
-        <div className="w-full px-4 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center text-[13px] sm:text-[15px] text-white font-bold border-t border-[#1a1a1a]">
+        <div className="w-full px-4 md:px-12 py-6 flex flex-col md:flex-row justify-between items-center text-[13px] sm:text-[15px] text-fintech-textDark font-bold border-t border-[#1a1a1a]">
           <button
             type="button"
             onClick={openSupportChat}
-            className="underline hover:text-gray-300 mb-4 md:mb-0 decoration-1 underline-offset-[3px] whitespace-nowrap bg-transparent border-0 text-white font-bold cursor-pointer p-0 text-[13px] sm:text-[15px]"
+            className="underline hover:text-gray-600 mb-4 md:mb-0 decoration-1 underline-offset-[3px] whitespace-nowrap bg-transparent border-0 text-fintech-textDark font-bold cursor-pointer p-0 text-[13px] sm:text-[15px]"
           >
             Help Centre
           </button>
@@ -225,13 +225,13 @@ const Login = ({ onBack, onSignupClick }) => {
             <span className="font-medium mr-1">Download our mobile apps</span>
             <a
               href="#"
-              className="underline hover:text-gray-300 decoration-1 underline-offset-[3px]"
+              className="underline hover:text-gray-600 decoration-1 underline-offset-[3px]"
             >
               iPhone
             </a>
             <a
               href="#"
-              className="underline hover:text-gray-300 decoration-1 underline-offset-[3px]"
+              className="underline hover:text-gray-600 decoration-1 underline-offset-[3px]"
             >
               Android
             </a>

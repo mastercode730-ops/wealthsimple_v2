@@ -22,7 +22,7 @@ const ShowcaseCard = ({ title, description, image, reverse, badge }) => {
       
       {/* Media Side */}
       <div className="w-full md:w-1/2 h-[400px] md:h-[600px] py-4">
-        <div className="w-full h-full bg-neutral-300 rounded-3xl overflow-hidden shadow-lg transition-transform duration-500 group-hover:scale-[1.02]">
+        <div className="w-full h-full bg-neutral-300 rounded-3xl overflow-hidden shadow-sm transition-transform duration-500 group-hover:scale-[1.02]">
            {/* Placeholder */}
         </div>
       </div>

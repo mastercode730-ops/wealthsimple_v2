@@ -6,7 +6,7 @@ const TradingShowcase = () => {
   const videoRef = useRef(null);
   
   return (
-    <section className="relative w-full h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden bg-fintech-dark border-t border-fintech-border/50">
+    <section className="relative w-full h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden bg-fintech-lighter border-t border-fintech-border/50">
       {/* Background Video Layer */}
       <video 
         ref={videoRef}
@@ -48,7 +48,7 @@ const TradingShowcase = () => {
           </motion.div>
 
           <h2
-            className="text-4xl md:text-6xl font-bold text-white leading-tight mb-8 font-sans"
+            className="text-4xl md:text-6xl font-bold text-fintech-textDark leading-tight mb-8 font-sans"
           >
             <motion.span className="block" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}>
               Execute with
@@ -83,15 +83,15 @@ const TradingShowcase = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           {/* Glass Mockup Frame */}
-          <div className="fintech-glass w-full max-w-md h-[450px] relative shadow-2xl border-white/20 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-700 ease-out flex flex-col p-6">
+          <div className="fintech-glass w-full max-w-md h-[450px] relative shadow-md border-white/20 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-700 ease-out flex flex-col p-6">
             
             <div className="flex justify-between items-center border-b border-white/10 pb-4 mb-4">
                <div>
-                  <p className="text-white font-bold text-xl">AAPL</p>
+                  <p className="text-fintech-textDark font-bold text-xl">AAPL</p>
                   <p className="text-neutral-500 text-xs uppercase">Apple Inc.</p>
                </div>
                <div className="text-right">
-                  <p className="text-white font-bold text-xl">$189.43</p>
+                  <p className="text-fintech-textDark font-bold text-xl">$189.43</p>
                   <p className="text-fintech-emerald text-sm">+1.24%</p>
                </div>
             </div>
@@ -112,8 +112,8 @@ const TradingShowcase = () => {
 
             {/* Mock Buttons */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white/10 py-3 rounded-lg text-center text-white font-semibold">Buy</div>
-              <div className="bg-fintech-dark py-3 rounded-lg text-center text-white font-semibold border border-white/10">Sell</div>
+              <div className="bg-white/10 py-3 rounded-lg text-center text-fintech-textDark font-semibold">Buy</div>
+              <div className="bg-fintech-lighter py-3 rounded-lg text-center text-fintech-textDark font-semibold border border-white/10">Sell</div>
             </div>
             
           </div>

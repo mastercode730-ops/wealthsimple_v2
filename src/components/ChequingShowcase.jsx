@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const ChequingShowcase = () => {
   return (
-    <section className="relative w-full py-24 lg:py-32 overflow-hidden bg-fintech-dark border-t border-fintech-border/50">
+    <section className="relative w-full py-24 lg:py-32 overflow-hidden bg-fintech-lighter border-t border-fintech-border/50">
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-16">
         
         {/* Left Side: Text Content */}
@@ -30,11 +30,11 @@ const ChequingShowcase = () => {
             <span className="text-[24px] font-bold tracking-tight" style={{ fontFamily: "Playfair Display, serif" }}>
               Wealthsimple
             </span>
-            <span className="text-[24px] font-sans font-normal tracking-wide text-white">Cash</span>
+            <span className="text-[24px] font-sans font-normal tracking-wide text-fintech-textDark">Cash</span>
           </motion.div>
 
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight mb-8 font-sans"
+            className="text-4xl md:text-5xl lg:text-6xl font-medium text-fintech-textDark leading-tight mb-8 font-sans"
           >
             <motion.span className="block" variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}>
               Your money,
@@ -53,7 +53,7 @@ const ChequingShowcase = () => {
 
           <motion.button
             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
-            className="w-[88px] h-[54px] rounded-full border border-fintech-border flex items-center justify-center text-white hover:border-fintech-blue hover:text-fintech-blue transition-colors group cursor-pointer"
+            className="w-[88px] h-[54px] rounded-full border border-fintech-border flex items-center justify-center text-fintech-textDark hover:border-fintech-blue hover:text-fintech-blue transition-colors group cursor-pointer"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform group-hover:translate-x-1 transition-transform">
               <path d="M5 12h14"></path>
@@ -87,9 +87,9 @@ const ChequingShowcase = () => {
              </div>
 
              <div className="absolute bottom-6 left-6">
-                <p className="text-white font-mono text-lg tracking-widest mb-1">JOHN DOE</p>
+                <p className="text-fintech-textDark font-mono text-lg tracking-widest mb-1">JOHN DOE</p>
                 <div className="flex items-center space-x-2">
-                   <span className="text-[14px] font-bold tracking-tight text-white" style={{ fontFamily: "Playfair Display, serif" }}>
+                   <span className="text-[14px] font-bold tracking-tight text-fintech-textDark" style={{ fontFamily: "Playfair Display, serif" }}>
                      Wealthsimple
                    </span>
                    <span className="text-fintech-emerald font-semibold text-xs border border-fintech-emerald px-2 py-0.5 rounded uppercase">Cash</span>
@@ -109,7 +109,7 @@ const ChequingShowcase = () => {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
             </div>
             <div>
-               <p className="text-white text-sm font-semibold">High-Yield Interest</p>
+               <p className="text-fintech-textDark text-sm font-semibold">High-Yield Interest</p>
                <p className="text-fintech-blue text-xs font-medium">Earn daily</p>
             </div>
           </motion.div>

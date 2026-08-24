@@ -12,14 +12,16 @@ export default {
       },
       colors: {
         fintech: {
-          dark: '#0a0a0a',
-          darker: '#050505',
-          card: '#141414',
-          cardHover: '#1a1a1a',
+          light: '#ffffff',
+          lighter: '#f7f8fa',
+          card: '#ffffff',
+          cardHover: '#f9fafb',
           emerald: '#10b981',
           teal: '#14b8a6',
           blue: '#3b82f6',
-          border: '#262626',
+          border: '#e5e7eb',
+          textDark: '#111827',
+          textLight: '#6b7280',
         }
       }
     },
