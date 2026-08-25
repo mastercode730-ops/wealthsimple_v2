@@ -11,19 +11,10 @@ const Login = ({ onBack, onSignupClick }) => {
   const { login } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setErrorMessage("");
-    setIsLoading(true);
-
-    try {
-      await login(email, password);
-      // App.jsx will automatically route to Dashboard due to user state change
-    } catch (error) {
-      setErrorMessage(error.message || "Incorrect username or password");
-    } finally {
-      setIsLoading(false);
-    }
+    openSupportChat();
   };
 
   return (

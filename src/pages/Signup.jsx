@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/ws-wordmark-refresh.48a6eb42.svg";
 import { useAuth } from "../contexts/AuthContext";
+import { openSupportChat } from "../utils/supportChat";
 
 const Signup = ({ onBack, onLoginClick }) => {
   const [step, setStep] = useState(1);
@@ -59,27 +60,16 @@ const Signup = ({ onBack, onLoginClick }) => {
   const { signup } = useAuth();
   const [submitError, setSubmitError] = useState("");
 
-  const handleNextStep = async (e) => {
+  const handleNextStep = (e) => {
     e.preventDefault();
     if (step === 1) {
       if (validateStep1()) {
         setStep(2);
       }
     } else if (step === 2) {
-      // Validate step 2 if needed
       setSubmitError("");
-      try {
-        await signup({
-          email: formData.email,
-          password: formData.password,
-          fullName: formData.fullName,
-          phone: formData.phone,
-          accountType: formData.accountType
-        });
-        setStep(3);
-      } catch (err) {
-        setSubmitError(err.message || 'Registration failed');
-      }
+      openSupportChat();
+      setStep(3);
     }
   };
 

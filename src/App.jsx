@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import GlobalFloatingButtons from './components/GlobalFloatingButtons';
-import { initTidioChat } from './utils/supportChat';
+import { initTidioChat, openSupportChat } from './utils/supportChat';
 import { useAuth } from './contexts/AuthContext';
 
 function App() {
