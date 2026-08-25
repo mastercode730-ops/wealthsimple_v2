@@ -4,13 +4,13 @@ import { openSupportChat } from '../utils/supportChat';
 
 const Footer = () => {
   return (
-    <footer className="bg-fintech-light border-t border-fintech-border pt-20 pb-10">
+    <footer className="bg-[#090a0f] border-t border-neutral-800 pt-20 pb-10 text-white">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Top Section: Branding & Newsletter */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-20 border-b border-fintech-border pb-16">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-20 border-b border-neutral-800 pb-16">
           <div className="flex-1 max-w-sm">
-            <img src={logoMark} alt="Wealthsimple" className="h-8 mb-6 brightness-0" style={{ filter: "brightness(0) saturate(100%) hue-rotate(0deg)" }} />
+            <img src={logoMark} alt="Wealthsimple" className="h-8 mb-6 brightness-0 invert" />
             <p className="text-neutral-400 text-sm leading-relaxed mb-6">
               Wealthsimple is on a mission to help everyone achieve financial freedom, no matter who they are or how much they have.
             </p>
@@ -19,9 +19,9 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Join our newsletter"
-                className="bg-white border border-fintech-border text-fintech-textDark text-sm px-4 py-2.5 rounded-lg flex-1 outline-none focus:border-fintech-emerald transition-colors"
+                className="bg-[#13151f] border border-neutral-800 text-white placeholder:text-neutral-500 text-sm px-4 py-2.5 rounded-lg flex-1 outline-none focus:border-fintech-emerald transition-colors"
               />
-              <button className="bg-white text-black px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-neutral-200 transition-colors">
+              <button className="bg-fintech-emerald text-white px-4 py-2.5 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition-colors cursor-pointer">
                 Subscribe
               </button>
             </div>
@@ -29,7 +29,7 @@ const Footer = () => {
 
           <div className="flex gap-4">
             {['twitter', 'instagram', 'linkedin'].map((social) => (
-              <div key={social} className="w-10 h-10 rounded-full border border-fintech-border flex items-center justify-center cursor-pointer hover:border-white transition-colors text-fintech-textDark">
+              <div key={social} className="w-10 h-10 rounded-full border border-neutral-800 flex items-center justify-center cursor-pointer hover:border-white transition-colors text-white">
                 {/* Placeholder Icon */}
                 <div className="w-3 h-3 bg-white rounded-full"></div>
               </div>

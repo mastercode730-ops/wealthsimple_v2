@@ -4,16 +4,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-fintech-light: #ffffff;
-  --color-fintech-lighter: #f7f8fa;
-  --color-fintech-card: #ffffff;
-  --color-fintech-cardHover: #f9fafb;
+  --color-fintech-dark: #0d0e15;
+  --color-fintech-darker: #090a0f;
+  --color-fintech-light: #090a0f;
+  --color-fintech-lighter: #0d0e15;
+  --color-fintech-card: #13151f;
+  --color-fintech-cardHover: #1a1d2b;
   --color-fintech-emerald: #10b981;
   --color-fintech-teal: #14b8a6;
   --color-fintech-blue: #3b82f6;
-  --color-fintech-border: #e5e7eb;
-  --color-fintech-textDark: #111827;
-  --color-fintech-textLight: #6b7280;
+  --color-fintech-border: #1f2434;
+  --color-fintech-textDark: #ffffff;
+  --color-fintech-textLight: #94a3b8;
+  --color-ws-off-white: #090a0f;
+  --color-ws-dark: #ffffff;
 
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Playfair Display', serif;
@@ -21,18 +25,21 @@
 
 @layer base {
   body {
-    @apply bg-fintech-lighter text-fintech-textDark font-sans antialiased;
+    @apply bg-fintech-darker text-fintech-textDark font-sans antialiased;
+    color-scheme: dark;
+    background-color: #090a0f;
+    color: #ffffff;
     scroll-behavior: smooth;
   }
 }
 
 @layer components {
   .fintech-card {
-    @apply bg-white border border-fintech-border rounded-2xl p-6 transition-all duration-300 hover:bg-fintech-lighter hover:border-fintech-teal/30 shadow-sm;
+    @apply bg-fintech-card border border-fintech-border rounded-2xl p-6 transition-all duration-300 hover:bg-fintech-cardHover hover:border-fintech-teal/30 shadow-lg shadow-black/40;
   }
 
   .fintech-glass {
-    @apply bg-white/70 backdrop-blur-lg border border-white/40 rounded-2xl p-6 shadow-md;
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-6 shadow-xl;
   }
 
   .fintech-btn-primary {
@@ -40,11 +47,11 @@
   }
 
   .fintech-btn-secondary {
-    @apply bg-transparent border border-fintech-border text-fintech-textDark font-semibold py-3 px-8 rounded-full hover:border-fintech-textDark transition-colors duration-300;
+    @apply bg-transparent border border-white/20 text-white font-semibold py-3 px-8 rounded-full hover:bg-white/10 hover:border-white transition-colors duration-300;
   }
   
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-fintech-textDark via-gray-700 to-gray-900;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-400;
   }
 
   .bento-grid {

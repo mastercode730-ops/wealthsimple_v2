@@ -17,7 +17,7 @@ import Footer from '../components/Footer';
 
 const Home = ({ onLoginClick, onSignupClick }) => {
   return (
-    <div className="min-h-screen bg-ws-off-white font-sans text-ws-dark">
+    <div className="min-h-screen bg-[#090a0f] font-sans text-white">
       <Navbar onLoginClick={onLoginClick} onSignupClick={onSignupClick} />
       <main>
         <HeroSection onSignupClick={onSignupClick} />

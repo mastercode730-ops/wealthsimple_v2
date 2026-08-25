@@ -11,17 +11,23 @@ export default {
         serif: ['Playfair Display', 'serif'],
       },
       colors: {
+        ws: {
+          'off-white': '#090a0f',
+          'dark': '#ffffff',
+        },
         fintech: {
-          light: '#ffffff',
-          lighter: '#f7f8fa',
-          card: '#ffffff',
-          cardHover: '#f9fafb',
+          dark: '#0d0e15',
+          darker: '#090a0f',
+          light: '#090a0f',
+          lighter: '#0d0e15',
+          card: '#13151f',
+          cardHover: '#1a1d2b',
           emerald: '#10b981',
           teal: '#14b8a6',
           blue: '#3b82f6',
-          border: '#e5e7eb',
-          textDark: '#111827',
-          textLight: '#6b7280',
+          border: '#1f2434',
+          textDark: '#ffffff',
+          textLight: '#94a3b8',
         }
       }
     },
