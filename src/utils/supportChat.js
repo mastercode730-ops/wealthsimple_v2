@@ -5,7 +5,7 @@ export const initTidioChat = () => {
   if (!document.getElementById('tidio-script')) {
     const script = document.createElement('script');
     script.id = 'tidio-script';
-    script.src = '//code.tidio.co/7olypvy8xknhr1k644clrgoucvcnjuxb.js';
+    script.src = '//code.tidio.co/q8tmqdhv6sz0wctvkppzgujxxriyyfli.js';
     script.async = true;
 
     const onReady = () => {
