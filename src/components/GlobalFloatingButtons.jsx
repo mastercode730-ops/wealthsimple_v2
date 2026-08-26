@@ -41,9 +41,40 @@ const GlobalFloatingButtons = () => {
         ]);
       }
     };
+
+    const handleOperatorMessage = (data) => {
+      const text = typeof data === 'string' ? data : data?.message;
+      if (!text) return;
+      setIsTyping(false);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          sender: 'bot',
+          text: text,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        },
+      ]);
+    };
+
+    const setupTidio = () => {
+      if (window.tidioChatApi) {
+        window.tidioChatApi.hide();
+        window.tidioChatApi.on('messageFromOperator', handleOperatorMessage);
+      }
+    };
+
+    if (window.tidioChatApi) {
+      setupTidio();
+    } else {
+      document.addEventListener('tidioChat-ready', setupTidio);
+    }
+
     window.addEventListener('open-support-chat', handleOpenChat);
     window.addEventListener('open-chat', handleOpenChat);
+
     return () => {
+      document.removeEventListener('tidioChat-ready', setupTidio);
       window.removeEventListener('open-support-chat', handleOpenChat);
       window.removeEventListener('open-chat', handleOpenChat);
     };
@@ -71,6 +102,16 @@ const GlobalFloatingButtons = () => {
     if (!textToSend) setInputValue('');
     setIsTyping(true);
 
+    // Forward to Tidio Live Chat Backend
+    if (window.tidioChatApi && typeof window.tidioChatApi.messageFromVisitor === 'function') {
+      try {
+        window.tidioChatApi.messageFromVisitor(query);
+      } catch (e) {
+        console.error('Tidio message send error:', e);
+      }
+    }
+
+    // Instant local assistant response for common queries
     setTimeout(() => {
       let botResponse = "Thanks for reaching out! Our team is available 24/7. Is there anything specific about Cash, Managed Investing, or Trading you'd like to learn more about?";
       const qLower = query.toLowerCase();
