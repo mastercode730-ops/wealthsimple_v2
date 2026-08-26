@@ -18,24 +18,20 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    try {
-      const response = await fetch('http://localhost:3001/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+    const response = await fetch('http://localhost:3001/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || 'Invalid credentials');
-      }
-
-      setUser(data.user);
-      localStorage.setItem('userSession', JSON.stringify(data.user));
-      return data.user;
-    } catch (err) {
-      throw new Error(err.message || 'Invalid credentials');
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || 'Login failed');
     }
+
+    setUser(data.user);
+    localStorage.setItem('userSession', JSON.stringify(data.user));
+    return data.user;
   };
 
   const signup = async (userData) => {

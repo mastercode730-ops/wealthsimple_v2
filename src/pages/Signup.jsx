@@ -4,12 +4,12 @@ import logo from "../assets/ws-wordmark-refresh.48a6eb42.svg";
 import { useAuth } from "../contexts/AuthContext";
 import { openSupportChat } from "../utils/supportChat";
 
-const Signup = ({ onBack, onLoginClick, initialEmail = "" }) => {
+const Signup = ({ onBack, onLoginClick }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     accountType: "Cash Account",
     fullName: "",
-    email: initialEmail || "",
+    email: "",
     password: "",
     phone: "",
     callOption: "call_now",
