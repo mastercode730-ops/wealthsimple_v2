@@ -26,8 +26,20 @@ const GlobalFloatingButtons = () => {
   }, [messages, isOpen, isTyping]);
 
   useEffect(() => {
-    const handleOpenChat = () => {
+    const handleOpenChat = (event) => {
       setIsOpen(true);
+      const detail = event?.detail;
+      if (detail?.message) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: Date.now(),
+            sender: 'bot',
+            text: detail.message,
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          },
+        ]);
+      }
     };
     window.addEventListener('open-support-chat', handleOpenChat);
     window.addEventListener('open-chat', handleOpenChat);
