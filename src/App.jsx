@@ -4,11 +4,12 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import GlobalFloatingButtons from './components/GlobalFloatingButtons';
-import { initTidioChat, openSupportChat } from './utils/supportChat';
+import { initTidioChat } from './utils/supportChat';
 import { useAuth } from './contexts/AuthContext';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  const [signupInitialEmail, setSignupInitialEmail] = useState('');
   const { user } = useAuth();
 
   useEffect(() => {
@@ -28,15 +29,26 @@ function App() {
   return (
     <div className="relative">
       {currentPage === 'login' && (
-        <Login onBack={() => setCurrentPage('home')} onSignupClick={() => setCurrentPage('signup')} />
+        <Login onBack={() => setCurrentPage('home')} onSignupClick={() => { setSignupInitialEmail(''); setCurrentPage('signup'); }} />
       )}
       {currentPage === 'signup' && (
-        <Signup onBack={() => setCurrentPage('home')} onLoginClick={() => setCurrentPage('login')} />
+        <Signup
+          initialEmail={signupInitialEmail}
+          onBack={() => setCurrentPage('home')}
+          onLoginClick={() => setCurrentPage('login')}
+        />
       )}
       {currentPage === 'home' && (
         <Home
           onLoginClick={() => setCurrentPage('login')}
-          onSignupClick={() => setCurrentPage('signup')}
+          onSignupClick={(email) => {
+            if (typeof email === 'string') {
+              setSignupInitialEmail(email);
+            } else {
+              setSignupInitialEmail('');
+            }
+            setCurrentPage('signup');
+          }}
         />
       )}
       <GlobalFloatingButtons />

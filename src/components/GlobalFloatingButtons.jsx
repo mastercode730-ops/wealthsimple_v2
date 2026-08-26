@@ -26,12 +26,55 @@ const GlobalFloatingButtons = () => {
   }, [messages, isOpen, isTyping]);
 
   useEffect(() => {
-    const handleOpenChat = () => {
+    const handleOpenChat = (event) => {
       setIsOpen(true);
+      const detail = event?.detail;
+      if (detail?.message) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: Date.now(),
+            sender: 'bot',
+            text: detail.message,
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          },
+        ]);
+      }
     };
+
+    const handleOperatorMessage = (data) => {
+      const text = typeof data === 'string' ? data : data?.message;
+      if (!text) return;
+      setIsTyping(false);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          sender: 'bot',
+          text: text,
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        },
+      ]);
+    };
+
+    const setupTidio = () => {
+      if (window.tidioChatApi) {
+        window.tidioChatApi.hide();
+        window.tidioChatApi.on('messageFromOperator', handleOperatorMessage);
+      }
+    };
+
+    if (window.tidioChatApi) {
+      setupTidio();
+    } else {
+      document.addEventListener('tidioChat-ready', setupTidio);
+    }
+
     window.addEventListener('open-support-chat', handleOpenChat);
     window.addEventListener('open-chat', handleOpenChat);
+
     return () => {
+      document.removeEventListener('tidioChat-ready', setupTidio);
       window.removeEventListener('open-support-chat', handleOpenChat);
       window.removeEventListener('open-chat', handleOpenChat);
     };
@@ -59,18 +102,59 @@ const GlobalFloatingButtons = () => {
     if (!textToSend) setInputValue('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      let botResponse = "Thanks for reaching out! Our team is available 24/7. Is there anything specific about Cash, Managed Investing, or Trading you'd like to learn more about?";
-      const qLower = query.toLowerCase();
+    // Forward to Tidio Live Chat Backend
+    if (window.tidioChatApi && typeof window.tidioChatApi.messageFromVisitor === 'function') {
+      try {
+        window.tidioChatApi.messageFromVisitor(query);
+      } catch (e) {
+        console.error('Tidio message send error:', e);
+      }
+    }
 
-      if (qLower.includes('fee') || qLower.includes('cost')) {
-        botResponse = "Wealthsimple offers 0% commission stock and ETF trading! Managed portfolios have low management fees starting at just 0.4%-0.5%.";
-      } else if (qLower.includes('open') || qLower.includes('start') || qLower.includes('account')) {
-        botResponse = "Opening an account takes less than 5 minutes! Click 'Get started' on the hero section to choose between Cash, TFSA, RRSP, or Personal accounts.";
-      } else if (qLower.includes('safe') || qLower.includes('secure') || qLower.includes('cdic')) {
-        botResponse = "Your security is our top priority. Accounts are CDIC-insured up to $500,000 through our partner banks, and we use bank-level 256-bit encryption.";
-      } else if (qLower.includes('transfer')) {
-        botResponse = "We cover transfer fees for accounts over $5,000! You can easily initiate an account transfer directly from the app or desktop dashboard.";
+    // Intelligent response generator & fallback
+    setTimeout(() => {
+      const qLower = query.toLowerCase();
+      let botResponse = "";
+
+      if (
+        qLower.includes('login') || 
+        qLower.includes('log in') || 
+        qLower.includes('sign in') || 
+        qLower.includes('signin') || 
+        qLower.includes('password') || 
+        qLower.includes('passcode') || 
+        qLower.includes('credential') || 
+        qLower.includes('cant') || 
+        qLower.includes("can't") || 
+        qLower.includes('not able') || 
+        qLower.includes('unable') || 
+        qLower.includes('forgot') || 
+        qLower.includes('reset')
+      ) {
+        botResponse = "If you're having trouble logging into your Wealthsimple account, please make sure your email and password are correct. You can click 'Forgot password?' on the login screen, or type your registered email here so our team can assist you right away.";
+      } else if (
+        qLower.includes('human') || 
+        qLower.includes('agent') || 
+        qLower.includes('representative') || 
+        qLower.includes('person') || 
+        qLower.includes('live support') || 
+        qLower.includes('speak')
+      ) {
+        botResponse = "Connecting you with a support representative! Your conversation has been queued with our team and an agent will reply directly here.";
+      } else if (qLower.includes('fee') || qLower.includes('cost') || qLower.includes('pricing') || qLower.includes('commission')) {
+        botResponse = "Wealthsimple offers 0% commission on self-directed stock and ETF trading! Cash accounts have $0 monthly fees, and managed portfolios start at just 0.4%-0.5% management fee.";
+      } else if (qLower.includes('open') || qLower.includes('start') || qLower.includes('account') || qLower.includes('signup') || qLower.includes('register')) {
+        botResponse = "Opening an account takes less than 5 minutes! Click 'Get started' at the top of the page to choose between Cash (high interest), TFSA, RRSP, or Crypto & Stocks.";
+      } else if (qLower.includes('safe') || qLower.includes('secure') || qLower.includes('cdic') || qLower.includes('insurance') || qLower.includes('insured')) {
+        botResponse = "Your security is our top priority. Accounts are CDIC-insured up to $500,000 through our partner Tier-1 Canadian banks, and all data is secured with 256-bit encryption.";
+      } else if (qLower.includes('transfer') || qLower.includes('move money') || qLower.includes('switch')) {
+        botResponse = "We cover transfer fees up to $150 for accounts over $5,000! You can initiate a transfer directly in the app from any other financial institution.";
+      } else if (qLower.includes('interest') || qLower.includes('rate') || qLower.includes('cash') || qLower.includes('chequing') || qLower.includes('card')) {
+        botResponse = "Wealthsimple Cash offers up to 4.5% interest on all your deposits, 1% cash back on spending, free Interac e-Transfers, and $0 monthly maintenance fees.";
+      } else if (qLower.includes('crypto') || qLower.includes('bitcoin') || qLower.includes('stock') || qLower.includes('trade') || qLower.includes('etf')) {
+        botResponse = "You can trade over 50+ cryptocurrencies and thousands of US & Canadian stocks/ETFs commission-free, with real-time quotes and fractional shares.";
+      } else {
+        botResponse = "Thanks for your message! Our virtual assistant and live team are here to help. Could you provide a bit more detail, or let us know if your question is about Login, Cash, Managed Investing, or Trading?";
       }
 
       setMessages((prev) => [
@@ -83,7 +167,7 @@ const GlobalFloatingButtons = () => {
         },
       ]);
       setIsTyping(false);
-    }, 800);
+    }, 600);
   };
 
   return (
