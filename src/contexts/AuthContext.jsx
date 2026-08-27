@@ -12,47 +12,34 @@ export const AuthProvider = ({ children }) => {
     // Check local storage for session on mount
     const storedUser = localStorage.getItem('userSession');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        console.error(e);
+      }
     }
     setLoading(false);
   }, []);
 
   const login = async (email, password) => {
-    try {
-      const response = await fetch('http://localhost:3001/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || 'Invalid credentials');
-      }
-
-      setUser(data.user);
-      localStorage.setItem('userSession', JSON.stringify(data.user));
-      return data.user;
-    } catch (err) {
-      throw new Error(err.message || 'Invalid credentials');
+    const storedUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+    const matched = storedUsers.find((u) => u.email === email && u.password === password);
+    if (matched) {
+      setUser(matched);
+      localStorage.setItem('userSession', JSON.stringify(matched));
+      return matched;
     }
+    throw new Error('Invalid credentials');
   };
 
   const signup = async (userData) => {
-    const response = await fetch('http://localhost:3001/api/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userData),
-    });
-
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.error || 'Signup failed');
-    }
-
-    setUser(data.user);
-    localStorage.setItem('userSession', JSON.stringify(data.user));
-    return data.user;
+    const storedUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+    const newUser = { id: Date.now().toString(), ...userData };
+    storedUsers.push(newUser);
+    localStorage.setItem('registeredUsers', JSON.stringify(storedUsers));
+    setUser(newUser);
+    localStorage.setItem('userSession', JSON.stringify(newUser));
+    return newUser;
   };
 
   const logout = () => {

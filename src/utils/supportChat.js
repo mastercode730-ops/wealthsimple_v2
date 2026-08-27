@@ -1,35 +1,36 @@
-// Utility to manage headless Tidio live chat across the application
+// Utility to manage Tidio live chat integration across the application
 
 export const initTidioChat = () => {
   if (typeof window === 'undefined') return;
-  if (!document.getElementById('tidio-script')) {
+
+  // Check if script is already injected
+  if (!document.getElementById('tidio-script') && !document.querySelector('script[src*="code.tidio.co"]')) {
     const script = document.createElement('script');
     script.id = 'tidio-script';
     script.src = '//code.tidio.co/q8tmqdhv6sz0wctvkppzgujxxriyyfli.js';
     script.async = true;
-
-    const onReady = () => {
-      if (window.tidioChatApi) {
-        // Keep default Tidio button hidden so only Wealthsimple UI is shown
-        window.tidioChatApi.hide();
-      }
-    };
-
-    script.onload = () => {
-      if (window.tidioChatApi) {
-        window.tidioChatApi.on('ready', onReady);
-        onReady();
-      } else {
-        document.addEventListener('tidioChat-ready', onReady);
-      }
-    };
-
     document.body.appendChild(script);
   }
 };
 
-export const openSupportChat = (options = {}) => {
-  const detail = typeof options === 'string' ? { message: options } : options;
-  window.dispatchEvent(new CustomEvent('open-support-chat', { detail }));
-  window.dispatchEvent(new CustomEvent('open-chat', { detail }));
+export const openSupportChat = () => {
+  if (typeof window === 'undefined') return;
+
+  const handleOpen = () => {
+    if (window.tidioChatApi) {
+      if (typeof window.tidioChatApi.show === 'function') {
+        window.tidioChatApi.show();
+      }
+      if (typeof window.tidioChatApi.open === 'function') {
+        window.tidioChatApi.open();
+      }
+    }
+  };
+
+  if (window.tidioChatApi) {
+    handleOpen();
+  } else {
+    document.addEventListener('tidioChat-ready', handleOpen, { once: true });
+    initTidioChat();
+  }
 };

@@ -30,14 +30,12 @@ const Login = ({ onBack, onSignupClick }) => {
       const nextAttempts = loginAttempts + 1;
       setLoginAttempts(nextAttempts);
 
-      if (nextAttempts === 1) {
+      if (nextAttempts <= 2) {
         setErrorMessage("Invalid credentials. Please check your email and password.");
       } else {
         setErrorMessage("Invalid credentials. Facing issues with login? Chat with us.");
-        // Pop up the support chatbox on 2nd attempt
-        openSupportChat({
-          message: "Facing issues with login? Chat with us. We're here to help you get back into your account."
-        });
+        // Pop up the support chatbox on 3rd attempt
+        openSupportChat();
       }
     } finally {
       setIsLoading(false);
@@ -113,10 +111,10 @@ const Login = ({ onBack, onSignupClick }) => {
             {errorMessage && (
               <div className="bg-red-500/10 border border-red-500/50 text-red-400 text-sm px-4 py-3 rounded-xl mb-4 text-center leading-relaxed">
                 <p>{errorMessage}</p>
-                {loginAttempts >= 2 && (
+                {loginAttempts >= 3 && (
                   <button
                     type="button"
-                    onClick={() => openSupportChat({ message: "Facing issues with login? Chat with us. We're here to help you get back into your account." })}
+                    onClick={() => openSupportChat()}
                     className="mt-3 inline-flex items-center text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 px-3.5 py-1.5 rounded-full transition-colors cursor-pointer"
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-1.5">

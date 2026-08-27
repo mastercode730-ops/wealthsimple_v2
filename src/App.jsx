@@ -3,7 +3,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
-import GlobalFloatingButtons from './components/GlobalFloatingButtons';
 import { initTidioChat } from './utils/supportChat';
 import { useAuth } from './contexts/AuthContext';
 
@@ -21,7 +20,6 @@ function App() {
     return (
       <div className="relative">
         <Dashboard onLogout={() => setCurrentPage('home')} />
-        <GlobalFloatingButtons />
       </div>
     );
   }
@@ -51,7 +49,6 @@ function App() {
           }}
         />
       )}
-      <GlobalFloatingButtons />
     </div>
   );
 }

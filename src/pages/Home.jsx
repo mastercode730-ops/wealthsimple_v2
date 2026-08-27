@@ -21,8 +21,7 @@ const Home = ({ onLoginClick, onSignupClick }) => {
       <Navbar onLoginClick={onLoginClick} onSignupClick={onSignupClick} />
       <main>
         <HeroSection onSignupClick={onSignupClick} />
-        <FeatureLinks />
-        <ChequingShowcase />
+        <FeatureLinks onSignupClick={onSignupClick} />
         <CreditCardShowcase />
         <WelcomeSection />
         <TradingShowcase />
