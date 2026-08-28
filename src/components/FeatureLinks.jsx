@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { openSupportChat } from '../utils/supportChat';
 
-const FeatureLinks = ({ onSignupClick }) => {
-  const [activeTab, setActiveTab] = useState('Chequing');
+const FeatureLinks = ({ onSignupClick, activeTab: propActiveTab, setActiveTab: propSetActiveTab }) => {
+  const [internalActiveTab, setInternalActiveTab] = useState('Chequing');
+  const activeTab = propActiveTab !== undefined ? propActiveTab : internalActiveTab;
+  const setActiveTab = propSetActiveTab || setInternalActiveTab;
 
   const categories = [
     { id: 'Chequing', name: 'Chequing', desc: 'High interest, zero everyday banking fees.' },
@@ -14,17 +16,18 @@ const FeatureLinks = ({ onSignupClick }) => {
   ];
 
   return (
-    <section className="bg-fintech-darker py-16 lg:py-24 flex flex-col items-center justify-center border-b border-neutral-800/80 relative overflow-hidden">
+    <section id="solutions" className="bg-fintech-darker py-10 sm:py-16 lg:py-24 flex flex-col items-center justify-center border-b border-neutral-800/80 relative overflow-hidden">
       {/* Background Subtle Ambient Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="w-full max-w-7xl px-4 sm:px-6 flex flex-col items-center relative z-10">
-        <p className="text-neutral-400 text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold mb-6 text-center">
+        {/* Solution Title - Visible on Desktop/Tablet, Hidden on Mobile where Hamburger is used */}
+        <p className="hidden md:block text-neutral-400 text-xs sm:text-sm uppercase tracking-[0.2em] font-semibold mb-6 text-center">
           Explore Our Solutions
         </p>
 
-        {/* Stable Non-Jumping Pill Switcher */}
-        <div className="flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 p-1.5 bg-neutral-900/90 backdrop-blur-xl border border-neutral-800 rounded-full shadow-2xl relative z-20 max-w-full">
+        {/* Stable Non-Jumping Pill Switcher - Hidden on mobile view, shown on md+ screens */}
+        <div className="hidden md:flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 p-1.5 bg-neutral-900/90 backdrop-blur-xl border border-neutral-800 rounded-full shadow-2xl relative z-20 max-w-full">
           {categories.map((cat) => {
             const isActive = activeTab === cat.id;
             return (
@@ -50,8 +53,8 @@ const FeatureLinks = ({ onSignupClick }) => {
           })}
         </div>
 
-        {/* Tab Tagline Under Pill Bar */}
-        <div className="h-8 mt-3 flex items-center justify-center text-center">
+        {/* Tab Tagline Under Pill Bar - Hidden on mobile view */}
+        <div className="hidden md:flex h-8 mt-3 items-center justify-center text-center">
           <AnimatePresence mode="wait">
             <motion.p
               key={activeTab}
@@ -67,7 +70,7 @@ const FeatureLinks = ({ onSignupClick }) => {
         </div>
 
         {/* Tab Meaning-Wise Content Showcase with Smooth Transition */}
-        <div className="w-full mt-10 lg:mt-14 min-h-[460px]">
+        <div className="w-full mt-4 sm:mt-10 lg:mt-14 min-h-[420px] sm:min-h-[460px]">
           <AnimatePresence mode="wait">
             {activeTab === 'Chequing' && (
               <motion.div

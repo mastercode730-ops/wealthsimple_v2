@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/ws-wordmark-refresh.48a6eb42.svg";
 
-const Navbar = ({ onLoginClick, onSignupClick }) => {
+const Navbar = ({ onLoginClick, onSignupClick, onSelectSolution, activeSolution }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Prevent background scroll when mobile menu is open
@@ -18,13 +18,25 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
   }, [isMenuOpen]);
 
   const navLinks = [
-    { name: "Chequing", href: "#chequing" },
-    { name: "Invest", href: "#invest" },
-    { name: "Trade", href: "#trade" },
-    { name: "Borrow", href: "#borrow" },
-    { name: "Business", href: "#business" },
-    { name: "Offers", href: "#offers" },
+    { name: "Chequing", id: "Chequing", href: "#chequing" },
+    { name: "Trade", id: "Trade", href: "#trade" },
+    { name: "Invest", id: "Invest", href: "#invest" },
+    { name: "Advice", id: "Advice", href: "#advice" },
+    { name: "Business", id: "Business", href: "#business" },
   ];
+
+  const handleNavClick = (e, link) => {
+    setIsMenuOpen(false);
+    if (link.id && onSelectSolution) {
+      onSelectSolution(link.id);
+    }
+    setTimeout(() => {
+      const el = document.getElementById('solutions');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 150);
+  };
 
   return (
     <>
@@ -164,18 +176,26 @@ const Navbar = ({ onLoginClick, onSignupClick }) => {
               </div>
             </div>
 
-            {/* Menu Links: Chequing, Invest, Trade, Borrow, Business, Offers */}
+            {/* Menu Links: Chequing, Trade, Invest, Advice, Business */}
             <div className="flex-1 py-8 flex flex-col justify-start space-y-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-[22px] font-medium text-neutral-900 hover:text-neutral-600 transition-colors cursor-pointer tracking-tight"
-                >
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSolution === link.id;
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link)}
+                    className={`text-[22px] font-medium transition-colors cursor-pointer tracking-tight flex items-center justify-between ${
+                      isActive ? 'text-emerald-600 font-semibold' : 'text-neutral-900 hover:text-neutral-600'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    {isActive && (
+                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    )}
+                  </a>
+                );
+              })}
             </div>
 
             {/* Bottom Actions: Log In & Get started */}
