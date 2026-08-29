@@ -44,6 +44,16 @@ const TIDIO_CUSTOM_STYLES = `
       z-index: 999999 !important;
     }
   }
+
+  /* Hide back button in chat header so it stays purely on conversation */
+  .chat button:not(#send-button):has(svg.directional-icon) {
+    display: none !important;
+  }
+
+  /* Ensure operator/avatar has proper left margin when back button is hidden */
+  .chat button:not(#send-button):has(svg.directional-icon) + div {
+    margin-left: 16px !important;
+  }
 `;
 
 const setupAutoChatTab = (shadowRoot) => {
