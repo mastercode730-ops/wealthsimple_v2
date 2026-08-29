@@ -1,17 +1,17 @@
 // Utility to manage Tidio live chat integration across the application
 
 const TIDIO_CUSTOM_STYLES = `
-  /* Tidio Chat Widget - Sleek floating chatbox for mobile and all screen sizes */
+  /* Tidio Chat Widget - Compact floating bottom card for mobile screen sizes */
   @media (max-width: 768px) {
     .chat, .mobile .chat, #chat-wrapper {
       position: fixed !important;
-      max-height: min(560px, 72vh) !important;
-      height: min(560px, 72vh) !important;
+      max-height: min(360px, 46vh) !important;
+      height: min(360px, 46vh) !important;
       max-width: calc(100vw - 24px) !important;
       width: calc(100vw - 24px) !important;
       right: 12px !important;
-      bottom: 84px !important;
-      left: auto !important;
+      left: 12px !important;
+      bottom: 76px !important;
       top: auto !important;
       border-radius: 20px !important;
       box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
@@ -20,9 +20,22 @@ const TIDIO_CUSTOM_STYLES = `
     }
     
     /* Ensure content inside chat respects rounded corners */
-    .chat > div, .mobile .chat > div {
+    .chat > div:nth-child(2), .mobile .chat > div:nth-child(2) {
       border-radius: 20px !important;
       overflow: hidden !important;
+      height: 100% !important;
+    }
+
+    /* Position close button neatly below chatbox */
+    #button.chat-open {
+      position: fixed !important;
+      top: auto !important;
+      bottom: 12px !important;
+      right: 16px !important;
+      left: auto !important;
+      width: 52px !important;
+      height: 52px !important;
+      z-index: 999999 !important;
     }
   }
 `;
@@ -50,13 +63,13 @@ const injectTidioStyles = () => {
       @media (max-width: 768px) {
         #tidio-chat-iframe,
         iframe[id*="tidio"] {
-          max-height: min(560px, 72vh) !important;
-          height: min(560px, 72vh) !important;
+          max-height: min(360px, 46vh) !important;
+          height: min(360px, 46vh) !important;
           max-width: calc(100vw - 24px) !important;
           width: calc(100vw - 24px) !important;
           right: 12px !important;
-          bottom: 84px !important;
-          left: auto !important;
+          left: 12px !important;
+          bottom: 76px !important;
           top: auto !important;
           border-radius: 20px !important;
           box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12) !important;
