@@ -26,6 +26,12 @@ const TIDIO_CUSTOM_STYLES = `
       height: 100% !important;
     }
 
+    /* Ensure home screen header does not push navigation tabs out of view */
+    .chat-header, header {
+      height: auto !important;
+      max-height: 180px !important;
+    }
+
     /* Position close button neatly below chatbox */
     #button.chat-open {
       position: fixed !important;
@@ -40,6 +46,45 @@ const TIDIO_CUSTOM_STYLES = `
   }
 `;
 
+const setupAutoChatTab = (shadowRoot) => {
+  if (!shadowRoot || shadowRoot._chatTabObserverAttached) return;
+  shadowRoot._chatTabObserverAttached = true;
+
+  const switchToChatTab = () => {
+    let attempts = 0;
+    const interval = setInterval(() => {
+      attempts++;
+      const chatButton = Array.from(shadowRoot.querySelectorAll('button')).find(
+        (b) => b.innerText && b.innerText.trim() === 'Chat'
+      ) || shadowRoot.querySelector('.tidio-5zdofo');
+
+      if (chatButton) {
+        chatButton.click();
+        clearInterval(interval);
+      } else if (attempts > 30) {
+        clearInterval(interval);
+      }
+    }, 20);
+  };
+
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.addedNodes.length) {
+        const chatContainer = shadowRoot.querySelector('.chat');
+        if (chatContainer) {
+          switchToChatTab();
+        }
+      }
+    }
+  });
+
+  observer.observe(shadowRoot, { childList: true, subtree: true });
+
+  if (shadowRoot.querySelector('.chat')) {
+    switchToChatTab();
+  }
+};
+
 const injectTidioStyles = () => {
   if (typeof document === 'undefined') return;
 
@@ -52,6 +97,7 @@ const injectTidioStyles = () => {
         styleEl.textContent = TIDIO_CUSTOM_STYLES;
         tidioHost.shadowRoot.appendChild(styleEl);
       }
+      setupAutoChatTab(tidioHost.shadowRoot);
     }
   };
 
@@ -124,6 +170,10 @@ export const openSupportChat = () => {
       if (typeof window.tidioChatApi.open === 'function') {
         window.tidioChatApi.open();
       }
+    }
+    const tidioHost = document.getElementById('tidio-chat');
+    if (tidioHost && tidioHost.shadowRoot) {
+      setupAutoChatTab(tidioHost.shadowRoot);
     }
   };
 
