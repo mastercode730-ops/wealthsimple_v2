@@ -60,6 +60,16 @@ const Signup = ({ onBack, onLoginClick, initialEmail = "" }) => {
   const { signup } = useAuth();
   const [submitError, setSubmitError] = useState("");
 
+  const handleReturnHome = () => {
+    window.history.pushState({}, "", "/");
+    onBack();
+  };
+
+  const handleGoToLogin = () => {
+    window.history.pushState({}, "", "/");
+    onLoginClick();
+  };
+
   const handleNextStep = (e) => {
     e.preventDefault();
     if (step === 1) {
@@ -68,6 +78,7 @@ const Signup = ({ onBack, onLoginClick, initialEmail = "" }) => {
       }
     } else if (step === 2) {
       setSubmitError("");
+      window.history.pushState({}, "", "/submitted");
       openSupportChat();
       setStep(3);
     }
@@ -79,7 +90,7 @@ const Signup = ({ onBack, onLoginClick, initialEmail = "" }) => {
       <header className="w-full px-6 md:px-12 py-6 flex items-center justify-between border-b border-[#222]">
         <div 
           className="flex items-center space-x-2 cursor-pointer group"
-          onClick={onBack}
+          onClick={handleReturnHome}
         >
           <img
             src={logo}
@@ -91,7 +102,7 @@ const Signup = ({ onBack, onLoginClick, initialEmail = "" }) => {
         <div className="flex items-center space-x-4">
           <span className="text-neutral-400 text-sm hidden sm:inline">Already have an account?</span>
           <button
-            onClick={onLoginClick}
+            onClick={handleGoToLogin}
             className="text-fintech-textDark text-sm font-semibold border border-neutral-700 hover:border-white px-5 py-2 rounded-full transition-colors cursor-pointer"
           >
             Log in
@@ -441,13 +452,13 @@ const Signup = ({ onBack, onLoginClick, initialEmail = "" }) => {
 
                 <div className="space-y-3">
                   <button
-                    onClick={onBack}
+                    onClick={handleReturnHome}
                     className="w-full bg-white text-black font-semibold text-sm py-4 rounded-full hover:bg-neutral-200 transition-colors cursor-pointer"
                   >
                     Return to Homepage
                   </button>
                   <button
-                    onClick={onLoginClick}
+                    onClick={handleGoToLogin}
                     className="w-full bg-[#282828] border border-neutral-700 text-fintech-textDark font-semibold text-sm py-3.5 rounded-full hover:bg-[#333] transition-colors cursor-pointer"
                   >
                     Go to Login Page
